@@ -57,7 +57,11 @@ void version_fun(void)
 	versions[1] = MCU_VERSION_2;
 	versions[2] = MCU_VERSION_3;
 }
-
+/**
+ * @description: 主函数
+ * @param {*}
+ * @return {*}
+ */
 int main(void)
 {
 	NVIC_SetVectorTable(NVIC_VECTTABLE_FLASH, IAP_APFLASH_START);
@@ -92,16 +96,11 @@ int main(void)
 		variable.global_percent = 100;
 		variable.full_running_time = 0;
 		FLASH_ProgramWordData(FLASH_55K_GLOBAL_DATA, variable.full_running_time);
-    FLASH_ProgramWordData(FLASH_55K_GLOBAL_DATA+4, variable.global_percent);
+    	FLASH_ProgramWordData(FLASH_55K_GLOBAL_DATA+4, variable.global_percent);
 	
 	}
 #if 1
 	mcu_state = 1; //第一次上电
-	//heart_beat();							//第一条心跳
-	//motor_pwr(PWR_ON);
-	motor_pwr(PWR_OFF);
-	SET_LED(SET);
-
 	curtain_mode = 0;
 	calibration_status = 0;
 	calibration_operation = 0;
@@ -116,7 +115,7 @@ int main(void)
 		motor_turn();		  //正反转
 		calibration_test();	  //校验
 
-		bt_uart_service(); //涂鸦协议处理
+		bt_uart_service(); 	 //涂鸦协议处理
 
 		if ((gptm0_4low > 30000) && (low_power_event_flag == 0))
 		{

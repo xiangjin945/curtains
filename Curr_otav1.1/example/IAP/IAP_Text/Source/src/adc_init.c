@@ -61,7 +61,7 @@ u16 check_motor_current(u16 protect_current)
 	float real_volt = 0;
 	u16 average_volt = 0;
 	
-	ms_delay_systick(300);
+	//ms_delay_systick(3);
 	for(i=0;i<10;i++)
 	{
 		

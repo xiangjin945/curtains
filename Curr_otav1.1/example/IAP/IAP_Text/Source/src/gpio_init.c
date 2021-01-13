@@ -155,12 +155,12 @@ void gpio_init(void)
 	//GPIO_WriteOutBits(HT_GPIOB, GPIO_PIN_4,SET);
 	//GPIO_WriteOutBits(HT_GPIOB, GPIO_PIN_4,RESET);
 	
-	//AFIO_GPxConfig(GPIO_PC, GPIO_PIN_3, AFIO_FUN_GPIO);//LED
-	//HT_GPIOC->RR = GPIO_PIN_3;
-	//GPIO_PullResistorConfig(HT_GPIOC, GPIO_PIN_3, GPIO_PR_DISABLE);
-	//GPIO_DriveConfig(HT_GPIOC, GPIO_PIN_3, GPIO_DV_16MA);
-	//GPIO_DirectionConfig(HT_GPIOC, GPIO_PIN_3, GPIO_DIR_OUT);
-	//GPIO_WriteOutBits(HT_GPIOC, GPIO_PIN_3,SET);
+	// AFIO_GPxConfig(GPIO_PC, GPIO_PIN_3, AFIO_FUN_GPIO);//LED
+	// HT_GPIOC->RR = GPIO_PIN_3;
+	// GPIO_PullResistorConfig(HT_GPIOC, GPIO_PIN_3, GPIO_PR_DISABLE);
+	// GPIO_DriveConfig(HT_GPIOC, GPIO_PIN_3, GPIO_DV_16MA);
+	// GPIO_DirectionConfig(HT_GPIOC, GPIO_PIN_3, GPIO_DIR_OUT);
+	// GPIO_WriteOutBits(HT_GPIOC, GPIO_PIN_3,SET);
 	
 	//TYBN1==GPIO_11=????б┴иж??????????????
 	AFIO_GPxConfig(GPIO_PA, GPIO_PIN_14, AFIO_FUN_GPIO);
@@ -195,6 +195,14 @@ void gpio_init(void)
 	GPIO_PullResistorConfig(HT_GPIOB, GPIO_PIN_1, GPIO_PR_DISABLE);
 	GPIO_DriveConfig(HT_GPIOB, GPIO_PIN_1, GPIO_DV_8MA);
 	GPIO_DirectionConfig(HT_GPIOB, GPIO_PIN_1, GPIO_DIR_OUT);
+
+	//pc0
+	AFIO_GPxConfig(GPIO_PC, GPIO_PIN_0, AFIO_FUN_GPIO);
+	HT_GPIOC->RR = GPIO_PIN_0;
+	GPIO_PullResistorConfig(HT_GPIOC, GPIO_PIN_0, GPIO_PR_DISABLE);
+	GPIO_DriveConfig(HT_GPIOC, GPIO_PIN_0, GPIO_DV_8MA);
+	GPIO_DirectionConfig(HT_GPIOC, GPIO_PIN_0, GPIO_DIR_OUT);
+	GPIO_WriteOutBits(HT_GPIOC, GPIO_PIN_0,SET);
 	
 	motor_pwr(PWR_OFF);
 }
