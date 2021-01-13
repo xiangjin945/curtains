@@ -145,6 +145,7 @@ int main(void)
 		//if(motor_current>0x190)		//400mA
 		if (motor_current > protect_current)
 		{
+			printf("%d",motor_current);
 			motor_current = 0;
 			motor_stop();
 		}
