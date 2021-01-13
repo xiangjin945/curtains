@@ -146,10 +146,6 @@ int main(void)
 		//if(motor_current>0x190)		//400mA
 		if (motor_current > protect_current)
 		{
-			USART_SendData(HT_USART0, 0xff);
-			USART_SendData(HT_USART0, motor_current >> 8);
-			USART_SendData(HT_USART0, motor_current);
-			USART_SendData(HT_USART0, 0xff);
 			printf("exit\n");
 			motor_current = 0;
 			motor_stop();
