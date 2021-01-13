@@ -142,11 +142,9 @@ int main(void)
 			//bt_send_mcu_ver();
 		}
 		//过流保护
-		//ms_delay_systick(1000);
 		//if(motor_current>0x190)		//400mA
 		if (motor_current > protect_current)
 		{
-			printf("exit\n");
 			motor_current = 0;
 			motor_stop();
 		}
