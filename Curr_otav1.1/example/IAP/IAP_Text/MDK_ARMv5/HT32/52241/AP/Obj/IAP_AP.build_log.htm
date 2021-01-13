@@ -22,17 +22,29 @@ Dialog DLL:      TARMCM1.DLL V1.14.1.0
  
 <h2>Project:</h2>
 C:\Users\24379\Desktop\smart_curtain\Curr_otav1.1\example\IAP\IAP_Text\MDK_ARMv5\Project_52241_AP.uvprojx
-Project File Date:  12/29/2020
+Project File Date:  01/11/2021
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build Project 'Project_52241_AP' - Target 'AP'
 assembling iap.s...
+compiling system.c...
+C:\Users\24379\Desktop\smart_curtain\Curr_otav1.1\example\IAP\IAP_Text\OTA\SRC\system.c(440): warning:  #223-D: function "bt_time_sync_result" declared implicitly
+  			bt_time_sync_result(0,bt_uart_rx_buf[offset + DATA_START+1],bt_time,time_zone_100,time_stamp_ms);
+C:\Users\24379\Desktop\smart_curtain\Curr_otav1.1\example\IAP\IAP_Text\OTA\SRC\system.c(444): warning:  #223-D: function "bt_time_sync_result" declared implicitly
+  			bt_time_sync_result(1,bt_uart_rx_buf[offset + DATA_START+1],bt_time,time_zone_100,time_stamp_ms);
+C:\Users\24379\Desktop\smart_curtain\Curr_otav1.1\example\IAP\IAP_Text\OTA\SRC\system.c(304): warning:  #177-D: variable "firmware_addr"  was declared but never referenced
+    unsigned char *firmware_addr;
+C:\Users\24379\Desktop\smart_curtain\Curr_otav1.1\example\IAP\IAP_Text\OTA\SRC\system.c(305): warning:  #177-D: variable "firm_length"  was declared but never referenced
+    static unsigned long firm_length;                                             //MCU升级文件长度
+C:\Users\24379\Desktop\smart_curtain\Curr_otav1.1\example\IAP\IAP_Text\OTA\SRC\system.c(306): warning:  #177-D: variable "firm_update_flag"  was declared but never referenced
+    static unsigned char firm_update_flag;                                        //MCU升级标志
+..\OTA\SRC\system.c: 5 warnings, 0 errors
 linking...
-Program Size: Code=13692 RO-data=2916 RW-data=128 ZI-data=3112  
+Program Size: Code=13736 RO-data=2916 RW-data=128 ZI-data=3112  
 FromELF: creating hex file...
 After Build - User command #1: fromelf --bin -o ".\HT32\52241\AP\Obj\IAP_AP.axf.bin" ".\HT32\52241\AP\Obj\IAP_AP.axf"
-".\HT32\52241\AP\Obj\IAP_AP.axf" - 0 Error(s), 0 Warning(s).
+".\HT32\52241\AP\Obj\IAP_AP.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>
 

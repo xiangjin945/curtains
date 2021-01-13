@@ -1,0 +1,117 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ¦ÌVision V5.27.0.0
+Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: XJ 2437974424@qq.com,  , LIC=MPP56-DUXBI-X59T0-BP301-CYLS4-U8VSW
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.27.0.0
+Toolchain Path:  D:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 6 (build 750)
+Assembler:       Armasm.exe V5.06 update 6 (build 750)
+Linker/Locator:  ArmLink.exe V5.06 update 6 (build 750)
+Library Manager: ArmAr.exe V5.06 update 6 (build 750)
+Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
+CPU DLL:         SARMCM3.DLL V5.27.0.0
+Dialog DLL:      DARMCM1.DLL V1.19.2.0
+Target DLL:      CMSIS_AGDI.dll V1.31.9.0
+Dialog DLL:      TARMCM1.DLL V1.14.1.0
+ 
+<h2>Project:</h2>
+C:\Users\24379\Desktop\work\example\IAP\IAP_Text\MDK_ARMv5\Project_52241_IAP.uvprojx
+Project File Date:  12/29/2020
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
+Build Project 'Project_52241_IAP' - Target 'IAP'
+compiling iap_xmodem.c...
+compiling iap_crc16.c...
+compiling iap_buffer.c...
+compiling iap_ht32f5xxxx_01_it.c...
+compiling iap_handler.c...
+compiling main_callfun.c...
+C:\Users\24379\Desktop\work\example\IAP\IAP_Text\Source\main_callfun\src\main_callfun.c(61): warning:  #940-D: missing return statement at end of non-void function "mcu_flash_read_jiaoyan" 
+  }
+C:\Users\24379\Desktop\work\example\IAP\IAP_Text\Source\main_callfun\src\main_callfun.c(194): warning:  #1-D: last line of file ends without a newline
+  //}
+..\Source\main_callfun\src\main_callfun.c: 2 warnings, 0 errors
+compiling iap_main.c...
+C:\Users\24379\Desktop\work\example\IAP\IAP_Text\Src_IAP\iap_main.c(125): warning:  #188-D: enumerated type mixed with another type
+    CKCU_PeripClockConfig(CKCUClock, ENABLE);
+C:\Users\24379\Desktop\work\example\IAP\IAP_Text\Src_IAP\iap_main.c(137): warning:  #188-D: enumerated type mixed with another type
+  	CKCU_PeripClockConfig(CKCUClock, ENABLE);
+C:\Users\24379\Desktop\work\example\IAP\IAP_Text\Src_IAP\iap_main.c(150): warning:  #188-D: enumerated type mixed with another type
+  	USART_IntConfig(HT_USART0, USART_INT_RXDR, ENABLE);
+C:\Users\24379\Desktop\work\example\IAP\IAP_Text\Src_IAP\iap_main.c(151): warning:  #188-D: enumerated type mixed with another type
+  	USART_TxCmd(HT_USART0, ENABLE);
+C:\Users\24379\Desktop\work\example\IAP\IAP_Text\Src_IAP\iap_main.c(152): warning:  #188-D: enumerated type mixed with another type
+  	USART_RxCmd(HT_USART0, ENABLE);
+C:\Users\24379\Desktop\work\example\IAP\IAP_Text\Src_IAP\iap_main.c(186): warning:  #188-D: enumerated type mixed with another type
+    USART_TxCmd(HTCFG_UART_PORT, ENABLE);
+C:\Users\24379\Desktop\work\example\IAP\IAP_Text\Src_IAP\iap_main.c(188): warning:  #188-D: enumerated type mixed with another type
+    USART_RxCmd(HTCFG_UART_PORT, ENABLE);
+C:\Users\24379\Desktop\work\example\IAP\IAP_Text\Src_IAP\iap_main.c(193): warning:  #188-D: enumerated type mixed with another type
+    USART_IntConfig(HTCFG_UART_PORT, USART_INT_RXDR, ENABLE);   /* Enable RX FIFO Interrupt               */
+C:\Users\24379\Desktop\work\example\IAP\IAP_Text\Src_IAP\iap_main.c(197): warning:  #188-D: enumerated type mixed with another type
+    USART_IntConfig(HTCFG_UART_PORT, USART_INT_TOUT, ENABLE);
+..\Src_IAP\iap_main.c: 9 warnings, 0 errors
+assembling startup_ht32f5xxxx_01_iap.s...
+compiling flash_copy.c...
+C:\Users\24379\Desktop\work\example\IAP\IAP_Text\Source\main_callfun\src\flash_copy.c(7): warning:  #177-D: variable "i"  was declared but never referenced
+      u32 i;
+C:\Users\24379\Desktop\work\example\IAP\IAP_Text\Source\main_callfun\src\flash_copy.c(9): warning:  #177-D: variable "buffer"  was declared but never referenced
+      uint8_t *buffer = buf;
+C:\Users\24379\Desktop\work\example\IAP\IAP_Text\Source\main_callfun\src\flash_copy.c(61): warning:  #940-D: missing return statement at end of non-void function "mcu_flash_read_iap" 
+  }
+C:\Users\24379\Desktop\work\example\IAP\IAP_Text\Source\main_callfun\src\flash_copy.c(168): warning:  #940-D: missing return statement at end of non-void function "IAP_Write_Flash" 
+  }
+..\Source\main_callfun\src\flash_copy.c: 4 warnings, 0 errors
+compiling iap_system_ht32f5xxxx_02.c...
+compiling ht32_cm0plus_misc.c...
+compiling ht32f5xxxx_bftm.c...
+compiling ht32f5xxxx_adc.c...
+compiling ht32f5xxxx_ckcu.c...
+compiling ht32f5xxxx_crc.c...
+compiling ht32f5xxxx_exti.c...
+compiling ht32f5xxxx_flash.c...
+compiling ht32f5xxxx_mctm.c...
+compiling ht32f5xxxx_gpio.c...
+compiling ht32f5xxxx_i2c.c...
+compiling ht32f5xxxx_rstcu.c...
+compiling ht32f5xxxx_pwrcu.c...
+compiling ht32f5xxxx_rtc.c...
+compiling ht32f5xxxx_spi.c...
+compiling ht32f5xxxx_wdt.c...
+compiling ht32_retarget.c...
+compiling ht32f5xxxx_tm.c...
+compiling ht32f5xxxx_usart.c...
+compiling ht32_serial.c...
+compiling ht32_board.c...
+compiling i2c_eeprom.c...
+compiling spi_flash.c...
+compiling spi_lcd.c...
+linking...
+Program Size: Code=2672 RO-data=32 RW-data=40 ZI-data=2024  
+FromELF: creating hex file...
+After Build - User command #1: fromelf --bin -o ".\HT32\52241\IAP\Obj\IAP.axf.bin" ".\HT32\52241\IAP\Obj\IAP.axf"
+".\HT32\52241\IAP\Obj\IAP.axf" - 0 Error(s), 15 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: Holtek
+                http://mcu.holtek.com.tw/pack/Holtek.HT32_DFP.1.0.20.pack
+                Holtek.HT32_DFP.1.0.20
+                Holtek HT32 Family Support
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_IAP
+  D:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx
+
+<h2>Collection of Component Files used:</h2>
+Build Time Elapsed:  00:00:04
+</pre>
+</body>
+</html>

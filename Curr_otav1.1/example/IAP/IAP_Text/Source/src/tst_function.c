@@ -119,14 +119,17 @@ void gptm0_test(void)
 //ADCµ÷ÊÔ
 void motor_current_test(void)
 {
-	float tmp_voltage = 0;
-	
+	//float tmp_voltage = 0;
+
+	motor_current = check_motor_current(protect_current);
+
+    //update_motor_current(motor_current);
     //gPotentiometerLevel = (HT_ADC->DR[0] & 0x0FFF);
     if(gptm0_second > 2)
     {
         gptm0_cnt = 0;
         gptm0_second = 0;  
-		motor_current = check_motor_current(protect_current);
+		// motor_current = check_motor_current(protect_current);
         // USART_SendData(HT_USART0,0xdd);
     
         //  USART_SendData(HT_USART0,(motor_current<<8));

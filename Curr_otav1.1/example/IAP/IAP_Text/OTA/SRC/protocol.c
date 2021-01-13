@@ -205,12 +205,7 @@ static unsigned char dp_download_control_handle(const unsigned char value[], uns
         break;
     }
 
-    // //处理完DP数据后应有反馈
-    // ret = mcu_dp_enum_update(DPID_CONTROL, control);
-    // if(ret == SUCCESS)
-    //     return SUCCESS;
-    // else
-    //     return ERROR;
+
 }
 
 /*****************************************************************************

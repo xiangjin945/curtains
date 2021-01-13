@@ -28,15 +28,7 @@ int uart_transmit_output_fun(unsigned char value)
 	USART_SendData(HT_USART0,value);
 	while (USART_GetFlagStatus(HT_USART0, USART_FLAG_TXC) == RESET);
 
-//     int i;
-//     int len = sizeof(value);
-	
-// 	//COM_DEBUG = HT_USART0
-// 	for(i=0;i<len;i++)
-// 	{
-// //		USART_SendData(HT_USART0,data[i]);
-// //		while (USART_GetFlagStatus(HT_USART0, USART_FLAG_TXC) == RESET);
-// 	}
+
 }
 
 void all_data_update_fun(void)

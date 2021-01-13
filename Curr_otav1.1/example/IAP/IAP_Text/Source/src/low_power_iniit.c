@@ -41,7 +41,7 @@ void key_exti_init(void)
 {
     EXTI_InitTypeDef EXTI_InitStruct = {0};
 
-    //PC1 ÖÐ¶ÏÅäÖÃ
+    //PC1 ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½
     AFIO_GPxConfig(GPIO_PC, AFIO_PIN_1, AFIO_FUN_DEFAULT);
     GPIO_DirectionConfig(HT_GPIOC, GPIO_PIN_1, GPIO_DIR_IN);
     GPIO_PullResistorConfig(HT_GPIOC, GPIO_PIN_1, GPIO_PR_UP);
@@ -58,7 +58,7 @@ void key_exti_init(void)
     EXTI_IntConfig(EXTI_CHANNEL_1, ENABLE);
     NVIC_EnableIRQ(EXTI0_1_IRQn);
 
-    //PC2 ÖÐ¶ÏÅäÖÃ
+    //PC2 ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½
     AFIO_GPxConfig(GPIO_PC, AFIO_PIN_2, AFIO_FUN_DEFAULT);
     GPIO_DirectionConfig(HT_GPIOC, GPIO_PIN_2, GPIO_DIR_IN);
     GPIO_PullResistorConfig(HT_GPIOC, GPIO_PIN_2, GPIO_PR_UP);
@@ -75,7 +75,7 @@ void key_exti_init(void)
     EXTI_IntConfig(EXTI_CHANNEL_2, ENABLE);
     NVIC_EnableIRQ(EXTI2_3_IRQn);
 
-    //PB5 ÖÐ¶ÏÅäÖÃ
+    //PB5 ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½
     AFIO_GPxConfig(GPIO_PB, AFIO_PIN_5, AFIO_FUN_DEFAULT);
     GPIO_DirectionConfig(HT_GPIOB, GPIO_PIN_5, GPIO_DIR_IN);
     GPIO_PullResistorConfig(HT_GPIOB, GPIO_PIN_5, GPIO_PR_UP);
@@ -92,7 +92,7 @@ void key_exti_init(void)
     EXTI_IntConfig(EXTI_CHANNEL_5, ENABLE);
     NVIC_EnableIRQ(EXTI4_15_IRQn);
 
-    //PA14 ÖÐ¶ÏÅäÖÃ
+    //PA14 ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½
     AFIO_GPxConfig(GPIO_PA, AFIO_PIN_14, AFIO_FUN_DEFAULT);
     GPIO_DirectionConfig(HT_GPIOA, GPIO_PIN_14, GPIO_DIR_IN);
     GPIO_PullResistorConfig(HT_GPIOA, GPIO_PIN_14, GPIO_PR_UP);
@@ -109,7 +109,7 @@ void key_exti_init(void)
     EXTI_IntConfig(EXTI_CHANNEL_14, ENABLE);
     NVIC_EnableIRQ(EXTI4_15_IRQn);
 
-    //PA15 ÖÐ¶ÏÅäÖÃ
+    //PA15 ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½
     AFIO_GPxConfig(GPIO_PA, AFIO_PIN_15, AFIO_FUN_DEFAULT);
     GPIO_DirectionConfig(HT_GPIOA, GPIO_PIN_15, GPIO_DIR_IN);
     GPIO_PullResistorConfig(HT_GPIOA, GPIO_PIN_15, GPIO_PR_UP);
@@ -167,7 +167,7 @@ void key_exti_init(void)
 void Exit_Init(void)
 {
     CKCU_PeripClockConfig_TypeDef CKCUClock = {{0}};
-    EXTI_InitTypeDef EXTI_InitStruct = {0};
+    //EXTI_InitTypeDef EXTI_InitStruct = {0};
 
     RSTCU_PeripReset_TypeDef rst = {0};
     rst.Bit.EXTI = 1;

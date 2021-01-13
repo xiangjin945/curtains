@@ -7,6 +7,7 @@
 #include "ht32.h"
 #include "ht32_board.h"
 #include "ht32f5xxxx_ckcu.h"
+#include "systick_init.h"
 
 extern u8 gADC_Result[3];
 extern u8 gADC_CycleEndOfConversion;

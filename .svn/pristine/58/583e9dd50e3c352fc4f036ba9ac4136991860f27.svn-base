@@ -1,0 +1,622 @@
+#include "tst_function.h"
+
+u8 run_state = 0;			//工作状态
+u8 rtc_motor_state = 0;
+u8 key_flag = 0;			//key_flag=1--左键, key_flag=2--右键
+u8 motor_status = 0;		//motor_status=1--工作方向, motor_status=2--换向
+u16 motor_current = 0;
+
+void delay(int i)
+{
+	for(;i>0;i--){;;;}
+}
+
+void update_battery_value(u32 current_data)
+{
+	u8 crc8 = 0;
+	
+	dp_data_buf[0] = 0x55;
+	dp_data_buf[1] = 0xAA;
+    dp_data_buf[2] = VERSION;
+    dp_data_buf[3] = 0x07;
+    dp_data_buf[4] = 0x00;	//数据长度
+    dp_data_buf[5] = 0x08;	//数据长度
+	dp_data_buf[6] = 0x0D;
+	dp_data_buf[7] = 0x02;
+	dp_data_buf[8] = 0x00;
+	dp_data_buf[9] = 0x04;
+	dp_data_buf[10] = (current_data>>24);  //电流
+	dp_data_buf[11] = (current_data>>16);  //电流
+	dp_data_buf[12] = (current_data>>8);  //电流
+	dp_data_buf[13] = (current_data&0xFF);  //电流
+	crc8 = get_check_sum(dp_data_buf,14);
+	dp_data_buf[14] = crc8;
+	uart0_send(dp_data_buf,15);
+	//usart0_send(dp_data_buf,15);
+}
+
+void update_protect_current(u32 current_data)
+{
+	u8 crc8 = 0;
+	
+	dp_data_buf[0] = 0x55;
+	dp_data_buf[1] = 0xAA;
+    dp_data_buf[2] = VERSION;
+    dp_data_buf[3] = 0x07;
+    dp_data_buf[4] = 0x00;	//数据长度
+    dp_data_buf[5] = 0x08;	//数据长度
+	dp_data_buf[6] = 0X78;
+	dp_data_buf[7] = 0x02;
+	dp_data_buf[8] = 0x00;
+	dp_data_buf[9] = 0x04;
+	dp_data_buf[10] = (current_data>>24);  //电流
+	dp_data_buf[11] = (current_data>>16);  //电流
+	dp_data_buf[12] = (current_data>>8);  //电流
+	dp_data_buf[13] = (current_data&0xFF);  //电流
+	crc8 = get_check_sum(dp_data_buf,14);
+	dp_data_buf[14] = crc8;
+	uart0_send(dp_data_buf,15);
+	//usart0_send(dp_data_buf,15);
+}
+	
+void update_motor_current(u32 current_data)
+{
+	u8 crc8 = 0;
+	
+	//55 AA 00 07 00 06 6E 00 00 02 00 64
+    //dp_id=110 -- 堵转电流测试
+	dp_data_buf[0] = 0x55;
+	dp_data_buf[1] = 0xAA;
+    dp_data_buf[2] = VERSION;
+    dp_data_buf[3] = 0x07;
+    dp_data_buf[4] = 0x00;	//数据长度
+    dp_data_buf[5] = 0x08;	//数据长度
+	dp_data_buf[6] = 0X6E;
+	dp_data_buf[7] = 0x02;
+	dp_data_buf[8] = 0x00;
+	dp_data_buf[9] = 0x04;
+	dp_data_buf[10] = (current_data>>24);  //电流
+	dp_data_buf[11] = (current_data>>16);  //电流
+	dp_data_buf[12] = (current_data>>8);  //电流
+	dp_data_buf[13] = (current_data&0xFF);  //电流
+	crc8 = get_check_sum(dp_data_buf,14);
+	dp_data_buf[14] = crc8;
+	uart0_send(dp_data_buf,15);
+	//usart0_send(dp_data_buf,15);
+}
+	
+//gptm0测试电机正反转
+void gptm0_test(void)
+{
+    u8 state = 0;
+    
+    //open_curtain();
+    if(gptm0_second<3)
+    {
+        if(state==0)
+        {
+            state =1;
+            SET_LED(RESET);
+            open_curtain();
+       }
+    }
+    if(gptm0_second>2)
+    {
+        if(state==1)
+        {
+            state = 2;
+            SET_LED(SET);
+            close_curtain();
+       }
+    }
+    if(gptm0_second>5)
+    {
+        state = 0;
+        gptm0_second = 0;
+    }
+}
+
+//ADC调试
+void motor_current_test(void)
+{
+	float tmp_voltage = 0;
+	
+    //gPotentiometerLevel = (HT_ADC->DR[0] & 0x0FFF);
+    if(gptm0_second > 2)
+    {
+			gptm0_cnt = 0;
+			gptm0_second = 0;
+			
+			
+			/*tmp_voltage = get_motor_current();
+			tmp_voltage = (tmp_voltage/4095)*3.3;				
+			motor_current = (u16)(tmp_voltage*1000);*/
+			// NOTE: 12.9 当检测采样值(10次中)有3次大于阈值，则认定堵转
+			motor_current = check_motor_current(protect_current);
+			
+			// USART_SendData(HT_USART0,0xdd);
+		
+			//  USART_SendData(HT_USART0,(motor_current<<8));
+			// while(USART_GetFlagStatus(HT_USART0, USART_FLAG_TXC) == RESET){;}
+			// USART_SendData(HT_USART0,(u8)motor_current);
+			// while(USART_GetFlagStatus(HT_USART0, USART_FLAG_TXC) == RESET){;}
+			// 	USART_SendData(HT_USART0,0xdd);
+		
+		update_motor_current(motor_current);//上报当前电流值
+		update_protect_current(protect_current);  
+		update_battery_value(33);		// 上报目前为百分比，设模拟值(33%) 33
+    }
+}
+
+//RTC倒计时
+void rtc_test(void)
+{
+#if 1
+    if(rtc_interrupt>0)
+    {
+        rtc_interrupt = 0;
+        rtc_motor_state = 1;
+        gptm0_second = 0;
+        RTC_Cmd(DISABLE);
+        
+        if(count_down_action==0)
+        {
+            if(curtain_mode==0)
+                open_curtain();		//反转
+            else
+                close_curtain();	//正转
+        }
+        else
+        {
+            if(curtain_mode==0)
+                close_curtain();	//正转
+            else
+                open_curtain();		//反转
+        }
+        
+        GPIO_WriteOutBits(HT_GPIOC, GPIO_PIN_3,RESET);
+        USART_SendData(HT_USART0,rtc_interrupt);
+        while(USART_GetFlagStatus(HT_USART0, USART_FLAG_TXC) == RESET);
+    }
+    if((rtc_motor_state==1)&&(gptm0_second>9))
+    {
+        rtc_motor_state = 0;
+        motor_stop();
+        
+        GPIO_WriteOutBits(HT_GPIOC, GPIO_PIN_3,SET);
+        USART_SendData(HT_USART0,rtc_interrupt);
+        while(USART_GetFlagStatus(HT_USART0, USART_FLAG_TXC) == RESET);
+    }
+#else
+    if(rtc_interrupt<2)
+    {
+        if(motor_status==0)
+        {
+            GPIO_WriteOutBits(HT_GPIOC, GPIO_PIN_3,RESET);
+            motor_status = 1;
+            open_curtain();
+        }
+    }
+    if(rtc_interrupt>4)
+    {
+        if(motor_status==1)
+        {
+            GPIO_WriteOutBits(HT_GPIOC, GPIO_PIN_3,SET);
+            motor_status = 2;
+            close_curtain();
+        }
+    }
+    if(rtc_interrupt>6)
+    {
+        motor_stop();
+    }
+    if(rtc_interrupt>8)
+    {
+        motor_status = 0;
+        rtc_interrupt = 0;
+    }
+#endif
+}
+//u32 crc32=0;
+//电机正反转测试
+void motor_turn(void)
+{
+    if(!SET_KEY())
+    {
+        SET_LED(RESET);
+        motor_stop();
+        key_flag = 0;
+        motor_pwr(PWR_OFF);
+    }
+    else
+    {
+        SET_LED(SET);
+    }
+    
+    if(!LEFT_KEY())
+    {
+        SET_LED(RESET);
+        key_flag = 1;
+    }
+    if(key_flag==1) // TouchGo左键触发: 窗帘设备右移 - 电机正转
+    {
+//			 crc32=ZXW_IAP_Write_Flash(SECOND_APP_CODE_START, 2480,0,0xf748);
+//				    delay_fun(100);
+//				
+//					 if(crc32=='O')
+//					 {
+//						    Network_send_string("OK\n");
+//						  Network_send_string("ANJIAN\n");
+//								delay_fun(100); 
+//								NVIC_SystemReset();
+//					 }
+        key_flag = 0;
+        motor_pwr(PWR_ON);
+        motor_stop();
+        delay(100);
+        
+        //if(curtain_mode==0)
+        //    open_curtain();		//反转
+        //else
+            close_curtain();	//正转
+    }
+    
+    if(!RIGHT_KEY())
+    {
+        SET_LED(RESET);
+        key_flag = 2;
+    }
+    if(key_flag==2) // TouchGo右键触发: 窗帘设备左移 - 电机反转
+    {
+			
+        key_flag = 0;
+        motor_pwr(PWR_ON);
+        motor_stop();
+        delay(100);
+        //if(curtain_mode==0)
+        //    close_curtain();	//正转
+        //else
+            open_curtain();		//反转
+    }
+}    
+
+//正转10秒，反转10秒
+void motor_10_test(void)
+{
+    if(!SET_KEY())
+    {
+        SET_LED(RESET);
+        motor_stop();
+        key_flag = 0;
+        motor_pwr(PWR_OFF);
+    }
+    else
+    {
+        SET_LED(SET);
+    }
+    
+    if(!LEFT_KEY())
+    {
+        SET_LED(RESET);
+        gptm0_cnt = 0;
+        gptm0_second = 0;
+        key_flag = 1;
+        motor_status = 1;
+    }
+    if(key_flag==1)
+    {
+        if(gptm0_second<9)
+        {
+            if(motor_status==1)
+            {
+                motor_status = 2;
+                motor_pwr(PWR_ON);
+                motor_stop();
+                delay(100);
+                
+                if(curtain_mode==0)
+                    open_curtain();		//反转
+                else
+                    close_curtain();	//正转
+            }
+        }
+        if(gptm0_second>9)
+        {
+            if(motor_status==2)
+            {
+                motor_status = 3;
+                motor_pwr(PWR_ON);
+                motor_stop();
+                delay(100);
+                if(curtain_mode==0)
+                    close_curtain();	//正转
+                else
+                    open_curtain();		//反转
+            }
+        }
+        if(gptm0_second>19)
+        {
+            motor_status = 1;
+            gptm0_cnt = 0;
+            gptm0_second = 0;
+        }
+    }
+    
+    if(!RIGHT_KEY())
+    {
+        SET_LED(RESET);
+        gptm0_cnt = 0;
+        gptm0_second = 0;
+        key_flag = 2;
+        motor_status =1;
+    }
+    if(key_flag==2)
+    {
+        if(gptm0_second<9)
+        {
+            if(motor_status==1)
+            {
+                motor_status = 2;
+                motor_pwr(PWR_ON);
+                motor_stop();
+                delay(100);
+                if(curtain_mode==0)
+                    close_curtain();	//正转
+                else
+                    open_curtain();		//反转
+            }
+        }
+        if(gptm0_second>9)
+        {
+            if(motor_status==2)
+            {
+                motor_status = 3;
+                motor_pwr(PWR_ON);
+                motor_stop();
+                delay(100);
+                
+                if(curtain_mode==0)
+                    open_curtain();		//反转
+                else
+                    close_curtain();	//正转
+            }
+        }
+        if(gptm0_second>19)
+        {
+            motor_status = 1;
+            gptm0_cnt = 0;
+            gptm0_second = 0;
+        }
+    }
+}
+
+
+void stop_fun(void)
+{
+	
+			motor_stop();			        //停止
+
+			if(run_state==1)    			//左移
+			{	
+				//0=左窗帘, 1=右窗帘
+				if(curtain_mode==0)     //0=左窗帘
+				{			
+					full_running_time = full_running_time + gptm0_4clbr;
+					gptm0_4clbr = 0;									// 计时重置: 计时已完成							
+					
+				}
+				if(curtain_mode==1)     //1=右窗帘
+				{
+					full_running_time = full_running_time - gptm0_4clbr;
+					gptm0_4clbr = 0;									// 计时重置: 计时已完成
+				}
+			}
+			
+			if(run_state==2)    			//右移
+			{
+				//0=左窗帘, 1=右窗帘
+				if(curtain_mode==0)     //0=左窗帘
+				{
+					full_running_time -= gptm0_4clbr;
+					gptm0_4clbr = 0;									// 计时重置: 计时已完成
+					/*full_running_time -= gptm0_second*1000;
+					full_running_time -= gptm0_cnt;
+					gptm0_cnt = 0;
+					gptm0_second = 0;*/
+				}
+				
+				if(curtain_mode==1)      //1=右窗帘
+				{
+					full_running_time += gptm0_4clbr;
+					gptm0_4clbr = 0;									// 计时重置: 计时已完成
+					/*full_running_time += gptm0_second*1000;
+					full_running_time += gptm0_cnt;
+					gptm0_cnt = 0;
+					gptm0_second = 0;*/
+				}
+			}
+			
+			run_state = 3;
+			//TODO: upload DP - calibration_operation: 1=停止
+}
+
+//校准
+void calibration_test(void)
+{
+    /*
+    校准模式：
+    点击开始 -- 启动电机，开始计时
+    点击完成 -- 停止电机，更新校验时间
+    或者
+    点击停止 -- 停止电机，保存当前时间后付初值
+    点击左移 -- 反转，重新计时，根据左右窗帘模式，左窗帘-累加到上次时间，右窗帘-减去左移时间
+    点击右移 -- 正转，重新计时，根据左右窗帘模式，右窗帘-累加到上次时间，左窗帘-减去右移时间
+    还有堵转发生  也是跟"停止"是一样
+    */
+	//校准状态 calibration_status: 0 =未设定, 1=开始, 2=完成
+	//calibration_operation: 0 =左移, 1=停止, 2=右移
+	//run_state 0=开始校准 1=左移  2=右移  3=停止
+	//calibration_operation_auto	1:自动校准模式  0:手动校准模式(模块下发-校准操作DP协议解包)
+	//gptm0_4clbr		校准专用计时变量
+	
+	if(calibration_status==1)		//开始校准
+	{
+		if(run_state==0)			//第一次开始
+		{
+			USART_SendData(HT_USART0,0x22);
+			//run_state = 1;
+			//0=左窗帘, 1=右窗帘
+			if(curtain_mode==0){
+				USART_SendData(HT_USART0,curtain_mode);
+				
+				open_curtain();		//打开窗帘
+				ms_delay_systick(100);
+				ms_delay_systick(100);
+				ms_delay_systick(100);
+//				ms_delay_systick(100);
+//				ms_delay_systick(100);
+//				ms_delay_systick(100);
+			  	run_state = 1;		//左移
+				//TODO: upload DP - calibration_operation: 0=左移
+			} else {
+				close_curtain();	//关闭窗帘
+				run_state = 2;		//右移
+				//TODO: upload DP - calibration_operation: 2=右移
+			}			
+			
+			calibration_operation_auto = 1;		// 自动校准模式: true
+			full_running_time=0;
+			gptm0_4clbr = 0;									// 校准计时开始
+			//gptm0_cnt = 0;
+			//gptm0_second = 0;
+		}
+		
+		//0=左移, 2=右移
+		//左移 && 手动校准模式 && 仅当校准处理非运行状态才驱动电机运转.重置计时
+		if(calibration_operation==0 && calibration_operation_auto==0 && run_state == 3)	// 正处于移动状态下，不必重复进入，否则会导致计时重置，后续累加错误
+		{
+			run_state = 1;
+			
+			open_curtain();		//反转左移
+			gptm0_4clbr = 0;									// 计时重置: 新的左移触发
+			ms_delay_systick(100);
+			ms_delay_systick(100);
+			ms_delay_systick(100);
+			//gptm0_cnt = 0;
+			//gptm0_second = 0;
+		}
+		//右移 && 手动校准模式 && 仅当校准处理非运行状态才驱动电机运转.重置计时
+		if(calibration_operation==2  && calibration_operation_auto==0 && run_state == 3)	// 正处于移动状态下，不必重复进入，否则会导致计时重置，后续累加错误
+		{
+			run_state = 2;
+			
+			close_curtain();	//正转右移
+			gptm0_4clbr = 0;	// 计时重置: 新的右移触发
+			ms_delay_systick(100);
+			ms_delay_systick(100);
+			ms_delay_systick(100);
+			//gptm0_cnt = 0;
+			//gptm0_second = 0;
+		}
+		// a. 当校准操作.停止 并且 手动校准状态 --> 进入停止电机处理
+		// b. 当检测堵转.强制停转 							--> 进入停止电机处理
+		/*过流保护*/ /*停止*/ 
+		if((motor_current>protect_current) || (calibration_operation==1 && calibration_operation_auto==0))
+		{
+			calibration_operation=1;
+			stop_fun();
+			
+		}
+		
+
+	}
+	
+	if(calibration_status==2)	      //完成校准
+	{
+		USART_SendData(HT_USART0,0xcc);
+		// 2020.11.20 仅当仍然处于转动状态，停转处理: 更新计时数据
+		if (run_state==1 || run_state==2)
+		{	
+			
+			motor_stop();	
+			if(run_state==1)    			//左移
+			{				
+				//0=左窗帘, 1=右窗帘
+				if(curtain_mode==0)     //0=左窗帘
+				{
+					full_running_time += gptm0_4clbr;
+					gptm0_4clbr = 0;									// 计时重置: 计时已完成
+					/*full_running_time += gptm0_second*1000;
+					full_running_time += gptm0_cnt;
+					gptm0_cnt = 0;
+					gptm0_second = 0;*/
+				}
+				if(curtain_mode==1)     //1=右窗帘
+				{
+					full_running_time -= gptm0_4clbr;
+					gptm0_4clbr = 0;									// 计时重置: 计时已完成
+					/*full_running_time -= gptm0_second*1000;
+					full_running_time -= gptm0_cnt;
+					gptm0_cnt = 0;
+					gptm0_second = 0;*/
+				}
+			}
+			
+			if(run_state==2)    			//右移
+			{
+				//0=左窗帘, 1=右窗帘
+				if(curtain_mode==0)     //0=左窗帘
+				{
+					full_running_time -= gptm0_4clbr;
+					gptm0_4clbr = 0;									// 计时重置: 计时已完成
+					/*full_running_time -= gptm0_second*1000;
+					full_running_time -= gptm0_cnt;
+					gptm0_cnt = 0;
+					gptm0_second = 0;*/
+				}
+				
+				if(curtain_mode==1)      //1=右窗帘
+				{
+					full_running_time += gptm0_4clbr;
+					gptm0_4clbr = 0;									// 计时重置: 计时已完成
+					/*full_running_time += gptm0_second*1000;
+					full_running_time += gptm0_cnt;
+					gptm0_cnt = 0;
+					gptm0_second = 0;*/
+				}
+			}
+		}		
+		
+		run_state = 0;
+		//停止
+		calibration_status = 0;
+		full_running_time_0A_pack(full_running_time);
+		//full_running_time = 0;
+	}
+}
+
+
+
+//TYBN1测试
+void tybn1_test(void)
+{
+    if(uart0_len>6)
+    {
+        ms_delay_systick(100);
+        
+        if((uart0_buf[0]==0x55)&&(uart0_buf[1]==0xAA))
+        {
+			tybn1_out_sleep_mode();
+            tybn1_ctrl();
+            mcu_state = 1;
+        }
+        uart0_len = 0;
+        memset(uart0_buf,0,100);
+    }
+    
+    if(gptm0_second>9)
+    {
+        //heart_beat();
+        //gptm0_second = 0;
+    }
+}

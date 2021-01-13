@@ -51,6 +51,7 @@ u16 get_battery_voltage(void)
 	return average;
 }
 
+
 //adc_val/4096*Vref=Value			// NOTE: 12.9 比较堵转电流阈值的检测电流采样算法
 u16 check_motor_current(u16 protect_current)
 {
@@ -58,9 +59,9 @@ u16 check_motor_current(u16 protect_current)
 	int t=0;
 	int k=0;
 	float real_volt = 0;
-	u16 average_volt = 20;
+	u16 average_volt = 0;
 	
-
+	ms_delay_systick(300);
 	for(i=0;i<10;i++)
 	{
 		

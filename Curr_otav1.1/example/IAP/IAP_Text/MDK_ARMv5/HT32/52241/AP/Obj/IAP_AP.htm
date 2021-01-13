@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\HT32\52241\AP\Obj\IAP_AP.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\HT32\52241\AP\Obj\IAP_AP.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Jan 08 19:41:25 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Jan 12 09:17:13 2021
 <BR><P>
 <H3>Maximum Stack Usage =        460 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -622,6 +622,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_WaitForOperationEnd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calibration_test
+<LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dp_download_percent_control_handle
 <LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mcu_flash_write
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;on_data_write_request_sched
@@ -630,8 +631,8 @@ Global Symbols
 <P><STRONG><a name="[62]"></a>FLASH_WaitForOperationEnd</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, ht32f5xxxx_flash.o(i.FLASH_WaitForOperationEnd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = FLASH_WaitForOperationEnd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ErasePage
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ProgramWordData
+<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ProgramWordData
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ErasePage
 </UL>
 
 <P><STRONG><a name="[c2]"></a>GPIO_DirectionConfig</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, ht32f5xxxx_gpio.o(i.GPIO_DirectionConfig))
@@ -1083,8 +1084,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_stop
 <LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_SendData
-<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ErasePage
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ProgramWordData
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ErasePage
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;full_running_time_0A_pack
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;open_curtain
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ms_delay_systick
@@ -1094,10 +1095,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[98]"></a>check_motor_current</STRONG> (Thumb, 182 bytes, Stack size 32 bytes, adc_init.o(i.check_motor_current))
+<P><STRONG><a name="[98]"></a>check_motor_current</STRONG> (Thumb, 194 bytes, Stack size 32 bytes, adc_init.o(i.check_motor_current))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = check_motor_current &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_SendData
+<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ms_delay_systick
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
@@ -1134,7 +1136,7 @@ Global Symbols
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dp_download_percent_control_handle
 </UL>
 
-<P><STRONG><a name="[8d]"></a>data_handle</STRONG> (Thumb, 692 bytes, Stack size 64 bytes, system.o(i.data_handle))
+<P><STRONG><a name="[8d]"></a>data_handle</STRONG> (Thumb, 698 bytes, Stack size 64 bytes, system.o(i.data_handle))
 <BR><BR>[Stack]<UL><LI>Max Depth = 444<LI>Call Chain = data_handle &rArr; mcu_ota_proc &rArr; mcu_ota_data_req &rArr; mcu_ota_init_disconnect &rArr; mcu_flash_write &rArr; FLASH_ProgramWordData &rArr; FLASH_WaitForOperationEnd
 </UL>
 <BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_SendData
@@ -1296,7 +1298,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[20]"></a>main</STRONG> (Thumb, 338 bytes, Stack size 0 bytes, main.o(i.main))
+<P><STRONG><a name="[20]"></a>main</STRONG> (Thumb, 356 bytes, Stack size 0 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 460<LI>Call Chain = main &rArr; bt_uart_service &rArr; data_handle &rArr; mcu_ota_proc &rArr; mcu_ota_data_req &rArr; mcu_ota_init_disconnect &rArr; mcu_flash_write &rArr; FLASH_ProgramWordData &rArr; FLASH_WaitForOperationEnd
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart0_init
@@ -1323,6 +1325,7 @@ Global Symbols
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWRCU_DeepSleep1
 <LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetVectorTable
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteOutBits
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ProgramWordData
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ErasePage
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI_WakeupEventIntConfig
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI_ClearWakeupFlag
@@ -1500,6 +1503,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tybn1_join_sleep_mode
 <LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calibration_test
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dp_download_percent_control_handle
+<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_motor_current
 </UL>
 
 <P><STRONG><a name="[a9]"></a>my_atoll</STRONG> (Thumb, 128 bytes, Stack size 24 bytes, mcu_api.o(i.my_atoll))
@@ -1839,8 +1843,8 @@ Local Symbols
 <P><STRONG><a name="[e2]"></a>on_data_write_request_sched</STRONG> (Thumb, 196 bytes, Stack size 32 bytes, mcu_ota_handler.o(i.on_data_write_request_sched))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = on_data_write_request_sched &rArr; file_crc_check_in_flash &rArr; mcu_flash_read
 </UL>
-<BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ErasePage
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ProgramWordData
+<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ProgramWordData
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ErasePage
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mcu_ota_init_disconnect
 <LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mcu_flash_write
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mcu_device_delay_restart
@@ -1857,8 +1861,8 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor_stop
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteOutBits
-<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ErasePage
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ProgramWordData
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ErasePage
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;open_curtain
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ms_delay_systick
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;close_curtain

@@ -497,6 +497,7 @@ void data_handle(unsigned short offset)
       break;
 
 	  case TUYA_BCI_UART_COMMON_MCU_OTA_FILE_INFO:
+      gptm0_4low = 0;
       USART_SendData(HT_USART0,0xEB);
       usart0_send(bt_uart_rx_buf,42);
       total_len = bt_uart_rx_buf[offset + LENGTH_HIGH] * 0x100;

@@ -42,3 +42,4 @@
 .\ht32\52241\ap\obj\adc_init.o: ..\..\..\..\utilities\common/spi_flash.h
 .\ht32\52241\ap\obj\adc_init.o: ..\..\..\..\utilities\common/spi_lcd.h
 .\ht32\52241\ap\obj\adc_init.o: ..\..\..\..\utilities\common/lcd.h
+.\ht32\52241\ap\obj\adc_init.o: ..\Source\inc\systick_init.h

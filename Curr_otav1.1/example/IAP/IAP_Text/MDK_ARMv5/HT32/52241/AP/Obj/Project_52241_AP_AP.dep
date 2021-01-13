@@ -1,5 +1,5 @@
 Dependencies for Project 'Project_52241_AP', Target 'AP': (DO NOT MODIFY !)
-F (..\Src_AP\main.c)(0x5FF83C54)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\Src_AP -I ..\ -I ..\..\..\..\library\CMSIS\Include -I ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include -I ..\..\..\..\library\HT32F5xxxx_Driver\inc -I ..\..\..\..\library\HT32_USBD_Library\inc -I ..\..\..\..\utilities -I ..\Source\inc -I ..\..\..\..\utilities\HT32_Board -I ..\OTA\INC -I ..\Source\main_callfun\inc -I ..\AP_FLASH-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DUSE_HT32F52231_41 -DUSE_HT32_DRIVER -DUSE_HT32F52241_SK -DUSE_HT32F52231_41 -DUSE_MEM_HT32F52241-o .\ht32\52241\ap\obj\main.o --omf_browse .\ht32\52241\ap\obj\main.crf --depend .\ht32\52241\ap\obj\main.d)
+F (..\Src_AP\main.c)(0x5FF85B02)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\Src_AP -I ..\ -I ..\..\..\..\library\CMSIS\Include -I ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include -I ..\..\..\..\library\HT32F5xxxx_Driver\inc -I ..\..\..\..\library\HT32_USBD_Library\inc -I ..\..\..\..\utilities -I ..\Source\inc -I ..\..\..\..\utilities\HT32_Board -I ..\OTA\INC -I ..\Source\main_callfun\inc -I ..\AP_FLASH-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DUSE_HT32F52231_41 -DUSE_HT32_DRIVER -DUSE_HT32F52241_SK -DUSE_HT32F52231_41 -DUSE_MEM_HT32F52241-o .\ht32\52241\ap\obj\main.o --omf_browse .\ht32\52241\ap\obj\main.crf --depend .\ht32\52241\ap\obj\main.d)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x5FEB0E7A)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x5FF681AB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x5FEB0E7A)
@@ -57,7 +57,7 @@ I (..\Source\inc\tst_function.h)(0x5FEB0E7C)
 I (..\OTA\INC\tybn1_init.h)(0x5FEB0E7C)
 I (..\Source\inc\bftm_init.h)(0x5FEB0E7C)
 I (..\Source\inc\low_power_iniit.h)(0x5FEB0E7C)
-I (..\Source\inc\adc_init.h)(0x5FEB0E7C)
+I (..\Source\inc\adc_init.h)(0x5FFC16EB)
 I (..\OTA\INC\protocol.h)(0x5FF58C44)
 I (..\OTA\INC\mcu_api.h)(0x5FF2CA4D)
 I (..\OTA\INC\system.h)(0x5FEB0E7C)
@@ -66,7 +66,7 @@ I (..\OTA\INC\mcu_ota_handler.h)(0x5FF40B7A)
 I (..\OTA\INC\bluetooth.h)(0x5FEB0E7C)
 I (..\AP_FLASH\ap_flash.h)(0x5FEB0E7D)
 F (.\iap.s)(0x5FEB0E7C)(--cpu Cortex-M0+ -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 527" --pd "USE_HT32F52231_41 SETA 1" --pd "USE_HT32_CHIP SETA 2"--list .\ht32\52241\ap\list\iap.lst --xref -o .\ht32\52241\ap\obj\iap.o --depend .\ht32\52241\ap\obj\iap.d)
-I (HT32\52241\IAP\Obj\IAP.axf.bin)(0x5FF844E5)
+I (HT32\52241\IAP\Obj\IAP.axf.bin)(0x5FFCF897)
 F (..\Src_AP\ht32f5xxxx_01_it.c)(0x5FF80E42)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\Src_AP -I ..\ -I ..\..\..\..\library\CMSIS\Include -I ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include -I ..\..\..\..\library\HT32F5xxxx_Driver\inc -I ..\..\..\..\library\HT32_USBD_Library\inc -I ..\..\..\..\utilities -I ..\Source\inc -I ..\..\..\..\utilities\HT32_Board -I ..\OTA\INC -I ..\Source\main_callfun\inc -I ..\AP_FLASH-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DUSE_HT32F52231_41 -DUSE_HT32_DRIVER -DUSE_HT32F52241_SK -DUSE_HT32F52231_41 -DUSE_MEM_HT32F52241-o .\ht32\52241\ap\obj\ht32f5xxxx_01_it.o --omf_browse .\ht32\52241\ap\obj\ht32f5xxxx_01_it.crf --depend .\ht32\52241\ap\obj\ht32f5xxxx_01_it.d)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x5FEB0E7A)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x5FF681AB)
@@ -122,7 +122,7 @@ I (..\Source\inc\board_config.h)(0x5FEB0E7C)
 I (..\Source\inc\tst_function.h)(0x5FEB0E7C)
 I (..\Source\inc\systick_init.h)(0x5FEB0E7C)
 I (..\Source\inc\save_all_setting.h)(0x5FEB0E7C)
-I (..\Source\inc\adc_init.h)(0x5FEB0E7C)
+I (..\Source\inc\adc_init.h)(0x5FFC16EB)
 I (..\Source\inc\bftm_init.h)(0x5FEB0E7C)
 I (..\Source\inc\low_power_iniit.h)(0x5FEB0E7C)
 I (..\OTA\INC\mcu_api.h)(0x5FF2CA4D)
@@ -1041,7 +1041,7 @@ I (..\..\..\..\utilities\common/spi_flash.h)(0x5FEB0E7D)
 I (..\..\..\..\utilities\common/spi_lcd.h)(0x5FEB0E7D)
 I (..\..\..\..\utilities\common\lcd.h)(0x5FEB0E7D)
 I (..\..\..\..\utilities\common\font.h)(0x5FEB0E7D)
-F (..\OTA\SRC\mcu_api.c)(0x5FF3D886)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\Src_AP -I ..\ -I ..\..\..\..\library\CMSIS\Include -I ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include -I ..\..\..\..\library\HT32F5xxxx_Driver\inc -I ..\..\..\..\library\HT32_USBD_Library\inc -I ..\..\..\..\utilities -I ..\Source\inc -I ..\..\..\..\utilities\HT32_Board -I ..\OTA\INC -I ..\Source\main_callfun\inc -I ..\AP_FLASH-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DUSE_HT32F52231_41 -DUSE_HT32_DRIVER -DUSE_HT32F52241_SK -DUSE_HT32F52231_41 -DUSE_MEM_HT32F52241-o .\ht32\52241\ap\obj\mcu_api.o --omf_browse .\ht32\52241\ap\obj\mcu_api.crf --depend .\ht32\52241\ap\obj\mcu_api.d)
+F (..\OTA\SRC\mcu_api.c)(0x5FFBF172)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\Src_AP -I ..\ -I ..\..\..\..\library\CMSIS\Include -I ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include -I ..\..\..\..\library\HT32F5xxxx_Driver\inc -I ..\..\..\..\library\HT32_USBD_Library\inc -I ..\..\..\..\utilities -I ..\Source\inc -I ..\..\..\..\utilities\HT32_Board -I ..\OTA\INC -I ..\Source\main_callfun\inc -I ..\AP_FLASH-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DUSE_HT32F52231_41 -DUSE_HT32_DRIVER -DUSE_HT32F52241_SK -DUSE_HT32F52231_41 -DUSE_MEM_HT32F52241-o .\ht32\52241\ap\obj\mcu_api.o --omf_browse .\ht32\52241\ap\obj\mcu_api.crf --depend .\ht32\52241\ap\obj\mcu_api.d)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x5FEB0E7A)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x5FF681AB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x5FEB0E7A)
@@ -1097,7 +1097,7 @@ I (..\Source\inc\board_config.h)(0x5FEB0E7C)
 I (..\Source\inc\tst_function.h)(0x5FEB0E7C)
 I (..\Source\inc\systick_init.h)(0x5FEB0E7C)
 I (..\Source\inc\save_all_setting.h)(0x5FEB0E7C)
-I (..\Source\inc\adc_init.h)(0x5FEB0E7C)
+I (..\Source\inc\adc_init.h)(0x5FFC16EB)
 I (..\Source\inc\bftm_init.h)(0x5FEB0E7C)
 I (..\Source\inc\low_power_iniit.h)(0x5FEB0E7C)
 I (..\OTA\INC\bluetooth.h)(0x5FEB0E7C)
@@ -1156,7 +1156,7 @@ I (..\..\..\..\utilities\common/i2c_eeprom.h)(0x5FEB0E7D)
 I (..\..\..\..\utilities\common/spi_flash.h)(0x5FEB0E7D)
 I (..\..\..\..\utilities\common/spi_lcd.h)(0x5FEB0E7D)
 I (..\..\..\..\utilities\common/lcd.h)(0x5FEB0E7D)
-F (..\OTA\SRC\mcu_transplant.c)(0x5FEB0E7C)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\Src_AP -I ..\ -I ..\..\..\..\library\CMSIS\Include -I ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include -I ..\..\..\..\library\HT32F5xxxx_Driver\inc -I ..\..\..\..\library\HT32_USBD_Library\inc -I ..\..\..\..\utilities -I ..\Source\inc -I ..\..\..\..\utilities\HT32_Board -I ..\OTA\INC -I ..\Source\main_callfun\inc -I ..\AP_FLASH-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DUSE_HT32F52231_41 -DUSE_HT32_DRIVER -DUSE_HT32F52241_SK -DUSE_HT32F52231_41 -DUSE_MEM_HT32F52241-o .\ht32\52241\ap\obj\mcu_transplant.o --omf_browse .\ht32\52241\ap\obj\mcu_transplant.crf --depend .\ht32\52241\ap\obj\mcu_transplant.d)
+F (..\OTA\SRC\mcu_transplant.c)(0x5FFC0C87)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\Src_AP -I ..\ -I ..\..\..\..\library\CMSIS\Include -I ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include -I ..\..\..\..\library\HT32F5xxxx_Driver\inc -I ..\..\..\..\library\HT32_USBD_Library\inc -I ..\..\..\..\utilities -I ..\Source\inc -I ..\..\..\..\utilities\HT32_Board -I ..\OTA\INC -I ..\Source\main_callfun\inc -I ..\AP_FLASH-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DUSE_HT32F52231_41 -DUSE_HT32_DRIVER -DUSE_HT32F52241_SK -DUSE_HT32F52231_41 -DUSE_MEM_HT32F52241-o .\ht32\52241\ap\obj\mcu_transplant.o --omf_browse .\ht32\52241\ap\obj\mcu_transplant.crf --depend .\ht32\52241\ap\obj\mcu_transplant.d)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x5FEB0E7A)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x5FF681AB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x5FEB0E7A)
@@ -1212,12 +1212,12 @@ I (..\Source\inc\board_config.h)(0x5FEB0E7C)
 I (..\Source\inc\tst_function.h)(0x5FEB0E7C)
 I (..\Source\inc\systick_init.h)(0x5FEB0E7C)
 I (..\Source\inc\save_all_setting.h)(0x5FEB0E7C)
-I (..\Source\inc\adc_init.h)(0x5FEB0E7C)
+I (..\Source\inc\adc_init.h)(0x5FFC16EB)
 I (..\Source\inc\bftm_init.h)(0x5FEB0E7C)
 I (..\Source\inc\low_power_iniit.h)(0x5FEB0E7C)
 I (..\OTA\INC\protocol.h)(0x5FF58C44)
 I (..\OTA\INC\mcu_api.h)(0x5FF2CA4D)
-F (..\OTA\SRC\protocol.c)(0x5FF83EA1)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\Src_AP -I ..\ -I ..\..\..\..\library\CMSIS\Include -I ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include -I ..\..\..\..\library\HT32F5xxxx_Driver\inc -I ..\..\..\..\library\HT32_USBD_Library\inc -I ..\..\..\..\utilities -I ..\Source\inc -I ..\..\..\..\utilities\HT32_Board -I ..\OTA\INC -I ..\Source\main_callfun\inc -I ..\AP_FLASH-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DUSE_HT32F52231_41 -DUSE_HT32_DRIVER -DUSE_HT32F52241_SK -DUSE_HT32F52231_41 -DUSE_MEM_HT32F52241-o .\ht32\52241\ap\obj\protocol.o --omf_browse .\ht32\52241\ap\obj\protocol.crf --depend .\ht32\52241\ap\obj\protocol.d)
+F (..\OTA\SRC\protocol.c)(0x5FFC05B5)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\Src_AP -I ..\ -I ..\..\..\..\library\CMSIS\Include -I ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include -I ..\..\..\..\library\HT32F5xxxx_Driver\inc -I ..\..\..\..\library\HT32_USBD_Library\inc -I ..\..\..\..\utilities -I ..\Source\inc -I ..\..\..\..\utilities\HT32_Board -I ..\OTA\INC -I ..\Source\main_callfun\inc -I ..\AP_FLASH-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DUSE_HT32F52231_41 -DUSE_HT32_DRIVER -DUSE_HT32F52241_SK -DUSE_HT32F52231_41 -DUSE_MEM_HT32F52241-o .\ht32\52241\ap\obj\protocol.o --omf_browse .\ht32\52241\ap\obj\protocol.crf --depend .\ht32\52241\ap\obj\protocol.d)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x5FEB0E7A)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x5FF681AB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x5FEB0E7A)
@@ -1273,7 +1273,7 @@ I (..\Source\inc\board_config.h)(0x5FEB0E7C)
 I (..\Source\inc\tst_function.h)(0x5FEB0E7C)
 I (..\Source\inc\systick_init.h)(0x5FEB0E7C)
 I (..\Source\inc\save_all_setting.h)(0x5FEB0E7C)
-I (..\Source\inc\adc_init.h)(0x5FEB0E7C)
+I (..\Source\inc\adc_init.h)(0x5FFC16EB)
 I (..\Source\inc\bftm_init.h)(0x5FEB0E7C)
 I (..\Source\inc\low_power_iniit.h)(0x5FEB0E7C)
 I (..\OTA\INC\bluetooth.h)(0x5FEB0E7C)
@@ -1282,7 +1282,7 @@ I (..\OTA\INC\system.h)(0x5FEB0E7C)
 I (..\OTA\INC\mcu_api.h)(0x5FF2CA4D)
 I (..\OTA\INC\mcu_ota_handler.h)(0x5FF40B7A)
 I (..\OTA\INC\mcu_transplant.h)(0x5FEB0E7C)
-F (..\OTA\SRC\system.c)(0x5FF462DA)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\Src_AP -I ..\ -I ..\..\..\..\library\CMSIS\Include -I ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include -I ..\..\..\..\library\HT32F5xxxx_Driver\inc -I ..\..\..\..\library\HT32_USBD_Library\inc -I ..\..\..\..\utilities -I ..\Source\inc -I ..\..\..\..\utilities\HT32_Board -I ..\OTA\INC -I ..\Source\main_callfun\inc -I ..\AP_FLASH-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DUSE_HT32F52231_41 -DUSE_HT32_DRIVER -DUSE_HT32F52241_SK -DUSE_HT32F52231_41 -DUSE_MEM_HT32F52241-o .\ht32\52241\ap\obj\system.o --omf_browse .\ht32\52241\ap\obj\system.crf --depend .\ht32\52241\ap\obj\system.d)
+F (..\OTA\SRC\system.c)(0x5FFCF80B)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\Src_AP -I ..\ -I ..\..\..\..\library\CMSIS\Include -I ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include -I ..\..\..\..\library\HT32F5xxxx_Driver\inc -I ..\..\..\..\library\HT32_USBD_Library\inc -I ..\..\..\..\utilities -I ..\Source\inc -I ..\..\..\..\utilities\HT32_Board -I ..\OTA\INC -I ..\Source\main_callfun\inc -I ..\AP_FLASH-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DUSE_HT32F52231_41 -DUSE_HT32_DRIVER -DUSE_HT32F52241_SK -DUSE_HT32F52231_41 -DUSE_MEM_HT32F52241-o .\ht32\52241\ap\obj\system.o --omf_browse .\ht32\52241\ap\obj\system.crf --depend .\ht32\52241\ap\obj\system.d)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x5FEB0E7A)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x5FF681AB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32_config.h)(0x5FEB0E7A)
@@ -1338,7 +1338,7 @@ I (..\Source\inc\board_config.h)(0x5FEB0E7C)
 I (..\Source\inc\tst_function.h)(0x5FEB0E7C)
 I (..\Source\inc\systick_init.h)(0x5FEB0E7C)
 I (..\Source\inc\save_all_setting.h)(0x5FEB0E7C)
-I (..\Source\inc\adc_init.h)(0x5FEB0E7C)
+I (..\Source\inc\adc_init.h)(0x5FFC16EB)
 I (..\Source\inc\bftm_init.h)(0x5FEB0E7C)
 I (..\Source\inc\low_power_iniit.h)(0x5FEB0E7C)
 I (..\OTA\INC\bluetooth.h)(0x5FEB0E7C)
@@ -1401,11 +1401,11 @@ I (..\Source\inc\board_config.h)(0x5FEB0E7C)
 I (..\Source\inc\tst_function.h)(0x5FEB0E7C)
 I (..\Source\inc\systick_init.h)(0x5FEB0E7C)
 I (..\Source\inc\save_all_setting.h)(0x5FEB0E7C)
-I (..\Source\inc\adc_init.h)(0x5FEB0E7C)
+I (..\Source\inc\adc_init.h)(0x5FFC16EB)
 I (..\Source\inc\bftm_init.h)(0x5FEB0E7C)
 I (..\Source\inc\low_power_iniit.h)(0x5FEB0E7C)
-F (..\Source\src\adc_init.c)(0x5FF687F1)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\Src_AP -I ..\ -I ..\..\..\..\library\CMSIS\Include -I ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include -I ..\..\..\..\library\HT32F5xxxx_Driver\inc -I ..\..\..\..\library\HT32_USBD_Library\inc -I ..\..\..\..\utilities -I ..\Source\inc -I ..\..\..\..\utilities\HT32_Board -I ..\OTA\INC -I ..\Source\main_callfun\inc -I ..\AP_FLASH-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DUSE_HT32F52231_41 -DUSE_HT32_DRIVER -DUSE_HT32F52241_SK -DUSE_HT32F52231_41 -DUSE_MEM_HT32F52241-o .\ht32\52241\ap\obj\adc_init.o --omf_browse .\ht32\52241\ap\obj\adc_init.crf --depend .\ht32\52241\ap\obj\adc_init.d)
-I (..\Source\inc\adc_init.h)(0x5FEB0E7C)
+F (..\Source\src\adc_init.c)(0x5FFC3EB8)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\Src_AP -I ..\ -I ..\..\..\..\library\CMSIS\Include -I ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include -I ..\..\..\..\library\HT32F5xxxx_Driver\inc -I ..\..\..\..\library\HT32_USBD_Library\inc -I ..\..\..\..\utilities -I ..\Source\inc -I ..\..\..\..\utilities\HT32_Board -I ..\OTA\INC -I ..\Source\main_callfun\inc -I ..\AP_FLASH-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DUSE_HT32F52231_41 -DUSE_HT32_DRIVER -DUSE_HT32F52241_SK -DUSE_HT32F52231_41 -DUSE_MEM_HT32F52241-o .\ht32\52241\ap\obj\adc_init.o --omf_browse .\ht32\52241\ap\obj\adc_init.crf --depend .\ht32\52241\ap\obj\adc_init.d)
+I (..\Source\inc\adc_init.h)(0x5FFC16EB)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_gpio.h)(0x5FEB0E7A)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x5FEB0E7A)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x5FF681AB)
@@ -1445,6 +1445,7 @@ I (..\..\..\..\utilities\common/i2c_eeprom.h)(0x5FEB0E7D)
 I (..\..\..\..\utilities\common/spi_flash.h)(0x5FEB0E7D)
 I (..\..\..\..\utilities\common/spi_lcd.h)(0x5FEB0E7D)
 I (..\..\..\..\utilities\common/lcd.h)(0x5FEB0E7D)
+I (..\Source\inc\systick_init.h)(0x5FEB0E7C)
 F (..\Source\src\bftm_init.c)(0x5FEB0E7B)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\Src_AP -I ..\ -I ..\..\..\..\library\CMSIS\Include -I ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include -I ..\..\..\..\library\HT32F5xxxx_Driver\inc -I ..\..\..\..\library\HT32_USBD_Library\inc -I ..\..\..\..\utilities -I ..\Source\inc -I ..\..\..\..\utilities\HT32_Board -I ..\OTA\INC -I ..\Source\main_callfun\inc -I ..\AP_FLASH-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DUSE_HT32F52231_41 -DUSE_HT32_DRIVER -DUSE_HT32F52241_SK -DUSE_HT32F52231_41 -DUSE_MEM_HT32F52241-o .\ht32\52241\ap\obj\bftm_init.o --omf_browse .\ht32\52241\ap\obj\bftm_init.crf --depend .\ht32\52241\ap\obj\bftm_init.d)
 I (..\Source\inc\bftm_init.h)(0x5FEB0E7C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_gpio.h)(0x5FEB0E7A)
@@ -1585,7 +1586,7 @@ I (..\Source\inc\ht32_board_config.h)(0x5FEB0E7C)
 I (..\Source\inc\uart0_init.h)(0x5FEB0E7C)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (..\Source\inc\usart0_init.h)(0x5FEB0E7C)
-F (..\Source\src\low_power_iniit.c)(0x5FF6F1F2)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\Src_AP -I ..\ -I ..\..\..\..\library\CMSIS\Include -I ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include -I ..\..\..\..\library\HT32F5xxxx_Driver\inc -I ..\..\..\..\library\HT32_USBD_Library\inc -I ..\..\..\..\utilities -I ..\Source\inc -I ..\..\..\..\utilities\HT32_Board -I ..\OTA\INC -I ..\Source\main_callfun\inc -I ..\AP_FLASH-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DUSE_HT32F52231_41 -DUSE_HT32_DRIVER -DUSE_HT32F52241_SK -DUSE_HT32F52231_41 -DUSE_MEM_HT32F52241-o .\ht32\52241\ap\obj\low_power_iniit.o --omf_browse .\ht32\52241\ap\obj\low_power_iniit.crf --depend .\ht32\52241\ap\obj\low_power_iniit.d)
+F (..\Source\src\low_power_iniit.c)(0x5FFBB292)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\Src_AP -I ..\ -I ..\..\..\..\library\CMSIS\Include -I ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include -I ..\..\..\..\library\HT32F5xxxx_Driver\inc -I ..\..\..\..\library\HT32_USBD_Library\inc -I ..\..\..\..\utilities -I ..\Source\inc -I ..\..\..\..\utilities\HT32_Board -I ..\OTA\INC -I ..\Source\main_callfun\inc -I ..\AP_FLASH-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DUSE_HT32F52231_41 -DUSE_HT32_DRIVER -DUSE_HT32F52241_SK -DUSE_HT32F52231_41 -DUSE_MEM_HT32F52241-o .\ht32\52241\ap\obj\low_power_iniit.o --omf_browse .\ht32\52241\ap\obj\low_power_iniit.crf --depend .\ht32\52241\ap\obj\low_power_iniit.d)
 I (..\Source\inc\low_power_iniit.h)(0x5FEB0E7C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_usart.h)(0x5FEB0E7A)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\HT32.h)(0x5FEB0E7A)
@@ -1629,7 +1630,7 @@ I (..\..\..\..\utilities\common/lcd.h)(0x5FEB0E7D)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (..\Source\inc\usart0_init.h)(0x5FEB0E7C)
 I (..\Source\inc\rtc_init.h)(0x5FEB0E7C)
-F (..\Source\src\motor_init.c)(0x5FF3D5D0)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\Src_AP -I ..\ -I ..\..\..\..\library\CMSIS\Include -I ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include -I ..\..\..\..\library\HT32F5xxxx_Driver\inc -I ..\..\..\..\library\HT32_USBD_Library\inc -I ..\..\..\..\utilities -I ..\Source\inc -I ..\..\..\..\utilities\HT32_Board -I ..\OTA\INC -I ..\Source\main_callfun\inc -I ..\AP_FLASH-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DUSE_HT32F52231_41 -DUSE_HT32_DRIVER -DUSE_HT32F52241_SK -DUSE_HT32F52231_41 -DUSE_MEM_HT32F52241-o .\ht32\52241\ap\obj\motor_init.o --omf_browse .\ht32\52241\ap\obj\motor_init.crf --depend .\ht32\52241\ap\obj\motor_init.d)
+F (..\Source\src\motor_init.c)(0x5FFBB193)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\Src_AP -I ..\ -I ..\..\..\..\library\CMSIS\Include -I ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include -I ..\..\..\..\library\HT32F5xxxx_Driver\inc -I ..\..\..\..\library\HT32_USBD_Library\inc -I ..\..\..\..\utilities -I ..\Source\inc -I ..\..\..\..\utilities\HT32_Board -I ..\OTA\INC -I ..\Source\main_callfun\inc -I ..\AP_FLASH-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DUSE_HT32F52231_41 -DUSE_HT32_DRIVER -DUSE_HT32F52241_SK -DUSE_HT32F52231_41 -DUSE_MEM_HT32F52241-o .\ht32\52241\ap\obj\motor_init.o --omf_browse .\ht32\52241\ap\obj\motor_init.crf --depend .\ht32\52241\ap\obj\motor_init.d)
 I (..\Source\inc\motor_init.h)(0x5FF3D5E1)
 I (..\Source\inc\pwm.h)(0x5FEB0E7C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_tm.h)(0x5FEB0E7A)
@@ -1773,7 +1774,7 @@ I (..\OTA\INC\tybn1_init.h)(0x5FEB0E7C)
 I (..\Source\inc\systick_init.h)(0x5FEB0E7C)
 I (..\Source\inc\bftm_init.h)(0x5FEB0E7C)
 I (..\Source\inc\low_power_iniit.h)(0x5FEB0E7C)
-I (..\Source\inc\adc_init.h)(0x5FEB0E7C)
+I (..\Source\inc\adc_init.h)(0x5FFC16EB)
 F (..\Source\src\service_logic_manage.c)(0x5FF80D18)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\Src_AP -I ..\ -I ..\..\..\..\library\CMSIS\Include -I ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include -I ..\..\..\..\library\HT32F5xxxx_Driver\inc -I ..\..\..\..\library\HT32_USBD_Library\inc -I ..\..\..\..\utilities -I ..\Source\inc -I ..\..\..\..\utilities\HT32_Board -I ..\OTA\INC -I ..\Source\main_callfun\inc -I ..\AP_FLASH-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DUSE_HT32F52231_41 -DUSE_HT32_DRIVER -DUSE_HT32F52241_SK -DUSE_HT32F52231_41 -DUSE_MEM_HT32F52241-o .\ht32\52241\ap\obj\service_logic_manage.o --omf_browse .\ht32\52241\ap\obj\service_logic_manage.crf --depend .\ht32\52241\ap\obj\service_logic_manage.d)
 I (..\Source\inc\service_logic_manage.h)(0x5FF70314)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_tm.h)(0x5FEB0E7A)
@@ -1831,7 +1832,7 @@ I (..\Source\inc\systick_init.h)(0x5FEB0E7C)
 I (..\Source\inc\bftm_init.h)(0x5FEB0E7C)
 I (..\Source\inc\low_power_iniit.h)(0x5FEB0E7C)
 I (..\Source\inc\save_all_setting.h)(0x5FEB0E7C)
-I (..\Source\inc\adc_init.h)(0x5FEB0E7C)
+I (..\Source\inc\adc_init.h)(0x5FFC16EB)
 F (..\Source\src\systick_init.c)(0x5FEB0E7B)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\Src_AP -I ..\ -I ..\..\..\..\library\CMSIS\Include -I ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include -I ..\..\..\..\library\HT32F5xxxx_Driver\inc -I ..\..\..\..\library\HT32_USBD_Library\inc -I ..\..\..\..\utilities -I ..\Source\inc -I ..\..\..\..\utilities\HT32_Board -I ..\OTA\INC -I ..\Source\main_callfun\inc -I ..\AP_FLASH-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DUSE_HT32F52231_41 -DUSE_HT32_DRIVER -DUSE_HT32F52241_SK -DUSE_HT32F52231_41 -DUSE_MEM_HT32F52241-o .\ht32\52241\ap\obj\systick_init.o --omf_browse .\ht32\52241\ap\obj\systick_init.crf --depend .\ht32\52241\ap\obj\systick_init.d)
 I (..\Source\inc\systick_init.h)(0x5FEB0E7C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_tm.h)(0x5FEB0E7A)
@@ -1873,7 +1874,7 @@ I (..\..\..\..\utilities\common/i2c_eeprom.h)(0x5FEB0E7D)
 I (..\..\..\..\utilities\common/spi_flash.h)(0x5FEB0E7D)
 I (..\..\..\..\utilities\common/spi_lcd.h)(0x5FEB0E7D)
 I (..\..\..\..\utilities\common/lcd.h)(0x5FEB0E7D)
-F (..\Source\src\tst_function.c)(0x5FF83EF9)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\Src_AP -I ..\ -I ..\..\..\..\library\CMSIS\Include -I ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include -I ..\..\..\..\library\HT32F5xxxx_Driver\inc -I ..\..\..\..\library\HT32_USBD_Library\inc -I ..\..\..\..\utilities -I ..\Source\inc -I ..\..\..\..\utilities\HT32_Board -I ..\OTA\INC -I ..\Source\main_callfun\inc -I ..\AP_FLASH-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DUSE_HT32F52231_41 -DUSE_HT32_DRIVER -DUSE_HT32F52241_SK -DUSE_HT32F52231_41 -DUSE_MEM_HT32F52241-o .\ht32\52241\ap\obj\tst_function.o --omf_browse .\ht32\52241\ap\obj\tst_function.crf --depend .\ht32\52241\ap\obj\tst_function.d)
+F (..\Source\src\tst_function.c)(0x5FFC3EC2)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\Src_AP -I ..\ -I ..\..\..\..\library\CMSIS\Include -I ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include -I ..\..\..\..\library\HT32F5xxxx_Driver\inc -I ..\..\..\..\library\HT32_USBD_Library\inc -I ..\..\..\..\utilities -I ..\Source\inc -I ..\..\..\..\utilities\HT32_Board -I ..\OTA\INC -I ..\Source\main_callfun\inc -I ..\AP_FLASH-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DUSE_HT32F52231_41 -DUSE_HT32_DRIVER -DUSE_HT32F52241_SK -DUSE_HT32F52231_41 -DUSE_MEM_HT32F52241-o .\ht32\52241\ap\obj\tst_function.o --omf_browse .\ht32\52241\ap\obj\tst_function.crf --depend .\ht32\52241\ap\obj\tst_function.d)
 I (..\Source\inc\tst_function.h)(0x5FEB0E7C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32.h)(0x5FEB0E7A)
 I (..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include\ht32f5xxxx_01.h)(0x5FF681AB)
@@ -1930,7 +1931,7 @@ I (..\Source\inc\systick_init.h)(0x5FEB0E7C)
 I (..\Source\inc\bftm_init.h)(0x5FEB0E7C)
 I (..\Source\inc\low_power_iniit.h)(0x5FEB0E7C)
 I (..\Source\inc\save_all_setting.h)(0x5FEB0E7C)
-I (..\Source\inc\adc_init.h)(0x5FEB0E7C)
+I (..\Source\inc\adc_init.h)(0x5FFC16EB)
 F (..\Source\src\uart0_init.c)(0x5FEB0E7B)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I ..\Src_AP -I ..\ -I ..\..\..\..\library\CMSIS\Include -I ..\..\..\..\library\Device\Holtek\HT32F5xxxx\Include -I ..\..\..\..\library\HT32F5xxxx_Driver\inc -I ..\..\..\..\library\HT32_USBD_Library\inc -I ..\..\..\..\utilities -I ..\Source\inc -I ..\..\..\..\utilities\HT32_Board -I ..\OTA\INC -I ..\Source\main_callfun\inc -I ..\AP_FLASH-I.\RTE\_AP-ID:\Keil_v5\ARM\PACK\Holtek\HT32_DFP\1.0.20\ARM\INC\Holtek\HT32F5xxxx-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DUSE_HT32F52231_41 -DUSE_HT32_DRIVER -DUSE_HT32F52241_SK -DUSE_HT32F52231_41 -DUSE_MEM_HT32F52241-o .\ht32\52241\ap\obj\uart0_init.o --omf_browse .\ht32\52241\ap\obj\uart0_init.crf --depend .\ht32\52241\ap\obj\uart0_init.d)
 I (..\Source\inc\uart0_init.h)(0x5FEB0E7C)
 I (..\..\..\..\library\HT32F5xxxx_Driver\inc\ht32f5xxxx_usart.h)(0x5FEB0E7A)
