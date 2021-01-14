@@ -471,12 +471,13 @@ static unsigned char dp_download_curtain_value_handle(const unsigned char value[
     unsigned long string_data = 0;
 
     string_data = ((value[0] << 24) | (value[1] << 16) | (value[2] << 8) | value[3]);
-
+    protect_current = string_data;
     //处理完DP数据后应有反馈
-    ret = mcu_dp_value_update(DPID_VALUE_SET, string_data);
+    ret = mcu_dp_value_update(DPID_VALUE_SET, protect_current);
     if (ret == SUCCESS)
     {
-        protect_current = string_data;
+        
+       // update_protect_current(protect_current);  
         return SUCCESS;
     }
 

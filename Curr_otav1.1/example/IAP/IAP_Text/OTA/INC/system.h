@@ -94,6 +94,7 @@
 #define TUYA_BCI_UART_COMMON_MCU_OTA_END			        0xEE				//OTA升级结束
 
 
+
 //#define TUYA_BCI_UART_COMMON_QUERY_MOUDLE_VERSION			0xA0				//MCU 获取模块版本信息
 
 #define TUYA_BCI_UART_COMMON_FACTOR_RESET_NOTIFY			0xA1				//恢复出厂设置通知

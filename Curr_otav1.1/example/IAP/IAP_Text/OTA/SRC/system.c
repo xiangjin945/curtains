@@ -338,7 +338,7 @@ void data_handle(unsigned short offset)
     break;
     
 #ifndef BT_CONTROL_SELF_MODE
-  case BT_STATE_CMD:                                  //bt工作状态	
+  case BT_STATE_CMD:                                    //bt工作状态	
     bt_work_state = bt_uart_rx_buf[offset + DATA_START];
     if(bt_work_state==0x01||bt_work_state==0x00)
     {

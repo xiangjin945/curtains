@@ -119,27 +119,21 @@ void gptm0_test(void)
 //ADC调试
 void motor_current_test(void)
 {
-	//float tmp_voltage = 0;
 
-	// motor_current = check_motor_current(protect_current);
-
-    //update_motor_current(motor_current);
-    //gPotentiometerLevel = (HT_ADC->DR[0] & 0x0FFF);
     if(gptm0_second > 1)
     {
         gptm0_cnt = 0;
         gptm0_second = 0;  
 		motor_current = check_motor_current(protect_current);
+        
         // USART_SendData(HT_USART0,0xdd);
-    
-        //  USART_SendData(HT_USART0,(motor_current>>8));
+        // USART_SendData(HT_USART0,(motor_current>>8));
         // while(USART_GetFlagStatus(HT_USART0, USART_FLAG_TXC) == RESET){;}
         // USART_SendData(HT_USART0,(u8)motor_current);
         // while(USART_GetFlagStatus(HT_USART0, USART_FLAG_TXC) == RESET){;}
-        // 	USART_SendData(HT_USART0,0xdd);
+        // USART_SendData(HT_USART0,0xdd);
 		
-		update_motor_current(motor_current);//上报当前电流值
-		update_protect_current(protect_current);  
+		//update_protect_current(protect_current);  
 		update_battery_value(33);		// 上报目前为百分比，设模拟值(33%) 33
     }
 }
