@@ -150,6 +150,9 @@ mcu在bt模块正确联网后可调用mcu_get_system_time()函数发起校时功
 //备注:
 #define DPID_LED_SETTING 101
 
+#define DPID_AUTO_ON_OFF 0x65 //自动开关模式
+#define DPID_TAIMED_TASK 0x66 //定时
+#define DPID_SILENT_MODE 0x69 //静音模式
 /*校准
 DPID_CURTAIN_MODE               窗帘模式
 DPID_CALIBRATION_STATUS         校准状态
@@ -159,8 +162,8 @@ DPID_CALIBRATION_OPERATION      校准操作
 #define DPID_CALIBRATION_STATUS 0x68
 #define DPID_CALIBRATION_OPERATION 0x6D
 
-/*速度设定*/
-#define DPID_SPEED_SET 0x6C
+/*电池余量*/
+#define DPID_BATTERY_REMAIN 0x6C
 /*电流阈值设定*/
 #define DPID_VALUE_SET 0x78
 

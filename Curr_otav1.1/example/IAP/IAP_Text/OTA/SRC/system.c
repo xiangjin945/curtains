@@ -292,6 +292,7 @@ static unsigned char data_point_handle(const unsigned char value[])
   
   return ret;
 }
+
 /*****************************************************************************
 函数名称 : data_handle
 功能描述 : 数据帧处理
@@ -301,9 +302,9 @@ static unsigned char data_point_handle(const unsigned char value[])
 void data_handle(unsigned short offset)
 {
 #ifdef SUPPORT_MCU_FIRM_UPDATE
-  unsigned char *firmware_addr;
-  static unsigned long firm_length;                                             //MCU升级文件长度
-  static unsigned char firm_update_flag;                                        //MCU升级标志
+  // unsigned char *firmware_addr;
+  // static unsigned long firm_length;                                             //MCU升级文件长度
+  // static unsigned char firm_update_flag;                                        //MCU升级标志
   unsigned long dp_len;
 #else
   unsigned short dp_len;
@@ -323,6 +324,7 @@ void data_handle(unsigned short offset)
   long long time_stamp_ms;
 #endif
 	
+  // mcu_dp_enum_update(DPID_BATTERY_REMAIN, 1);
   switch(cmd_type)
   {
   case HEAT_BEAT_CMD:                                   //心跳包
@@ -437,11 +439,11 @@ void data_handle(unsigned short offset)
 				bt_time.DayIndex = bt_uart_rx_buf[offset + DATA_START+8];
 				time_zone_100 = ((unsigned short)bt_uart_rx_buf[offset + DATA_START+9]<<8)+bt_uart_rx_buf[offset + DATA_START+10];
 			}
-			bt_time_sync_result(0,bt_uart_rx_buf[offset + DATA_START+1],bt_time,time_zone_100,time_stamp_ms);
+			//bt_time_sync_result(0,bt_uart_rx_buf[offset + DATA_START+1],bt_time,time_zone_100,time_stamp_ms);
 		}
 		else//获取时间失败
 		{
-			bt_time_sync_result(1,bt_uart_rx_buf[offset + DATA_START+1],bt_time,time_zone_100,time_stamp_ms);
+			//bt_time_sync_result(1,bt_uart_rx_buf[offset + DATA_START+1],bt_time,time_zone_100,time_stamp_ms);
 		}
 		break;
 #endif

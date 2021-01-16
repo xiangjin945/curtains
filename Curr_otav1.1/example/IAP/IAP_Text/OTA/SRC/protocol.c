@@ -95,12 +95,14 @@ const DOWNLOAD_CMD_S download_cmd[] =
         {DPID_BATTERY_PERCENTAGE, DP_TYPE_VALUE},
         {DPID_BORDER, DP_TYPE_ENUM},
         {DPID_POSITION_BEST, DP_TYPE_VALUE},
-        {DPID_LED_SETTING, DP_TYPE_STRING},
+        //{DPID_LED_SETTING, DP_TYPE_STRING},
         {DPID_CURTAIN_MODE, DP_TYPE_ENUM},
         {DPID_CALIBRATION_STATUS, DP_TYPE_ENUM},
         {DPID_CALIBRATION_OPERATION, DP_TYPE_ENUM},
-        {DPID_SPEED_SET, DP_TYPE_VALUE},
-        {DPID_VALUE_SET, DP_TYPE_VALUE},
+        {DPID_BATTERY_REMAIN, DP_TYPE_VALUE},
+        {DPID_AUTO_ON_OFF, DP_TYPE_BOOL},
+        {DPID_SILENT_MODE, DP_TYPE_BOOL},
+
 };
 
 /******************************************************************************
@@ -452,7 +454,7 @@ static unsigned char dp_download_curtain_speed_handle(const unsigned char value[
     string_data = ((value[0] << 24) | (value[1] << 16) | (value[2] << 8) | value[3]);
 
     //处理完DP数据后应有反馈
-    ret = mcu_dp_value_update(DPID_SPEED_SET, string_data);
+    ret = mcu_dp_value_update(DPID_BATTERY_REMAIN, string_data);
     if (ret == SUCCESS)
     {
         speed = string_data;
@@ -478,6 +480,44 @@ static unsigned char dp_download_curtain_value_handle(const unsigned char value[
     {
         
        // update_protect_current(protect_current);  
+        return SUCCESS;
+    }
+
+    else
+        return ERROR;
+}
+
+//自动开关模式
+static unsigned char dp_curtain_auto_mode(const unsigned char value[], unsigned short length)
+{
+    //示例:当前DP类型为STRING
+    unsigned char ret;
+    unsigned char string_data = 0;
+
+    string_data = value[0];
+    //处理完DP数据后应有反馈
+    ret = mcu_dp_bool_update(DPID_AUTO_ON_OFF, string_data);
+    if (ret == SUCCESS)
+    {
+        return SUCCESS;
+    }
+
+    else
+        return ERROR;
+}
+
+//静音模式
+static unsigned char dp_curtain_silent_mode(const unsigned char value[], unsigned short length)
+{
+    //示例:当前DP类型为STRING
+    unsigned char ret;
+    unsigned char string_data = 0;
+
+    string_data = value[0];
+    //处理完DP数据后应有反馈
+    ret = mcu_dp_bool_update(DPID_SILENT_MODE, string_data);
+    if (ret == SUCCESS)
+    {
         return SUCCESS;
     }
 
@@ -574,6 +614,7 @@ unsigned char dp_download_handle(unsigned char dpid, const unsigned char value[]
   ***********************************/
     gptm0_4low = 0;
     unsigned char ret;
+ 
     switch (dpid)
     {
     case DPID_CONTROL:
@@ -600,11 +641,11 @@ unsigned char dp_download_handle(unsigned char dpid, const unsigned char value[]
         //最佳位置处理函数
         ret = dp_download_position_best_handle(value, length);
         break;
-    case DPID_LED_SETTING:
-        //指示灯设置处理函数
-        ret = dp_download_led_setting_handle(value, length);
-        break;
-    case DPID_SPEED_SET:
+    // case DPID_LED_SETTING:
+    //     //指示灯设置处理函数
+    //     ret = dp_download_led_setting_handle(value, length);
+    //     break;
+    case DPID_BATTERY_REMAIN:
         /*速度设定*/
         ret = dp_download_curtain_speed_handle(value, length);
 
@@ -621,11 +662,18 @@ unsigned char dp_download_handle(unsigned char dpid, const unsigned char value[]
         ret = dp_download_curtain_operation_handle(value, length);
 
         break;
-
     case DPID_VALUE_SET:
         //电流阈值的设置
         ret = dp_download_curtain_value_handle(value, length);
         break;
+    case DPID_AUTO_ON_OFF:
+        //自动开关模式
+        ret = dp_curtain_auto_mode(value, length);
+        break;
+    case DPID_SILENT_MODE:
+        //静音模式
+        ret = dp_curtain_silent_mode(value, length);
+
 
     default:
         break;

@@ -67,20 +67,24 @@ int main(void)
 	NVIC_SetVectorTable(NVIC_VECTTABLE_FLASH, IAP_APFLASH_START);
 
 	printf("VERSION 1.1.1!\n");
+	
 	version_fun();
 	bt_protocol_init(); //协议串口的初始化
 
 	clock_config(); //时钟配置
 	uart0_init();	//B7.B8, TYBN1
 	usart0_init();	//C4.C5, 调试用
-
+	
 	key_init();			  //按键初始化
 	gpio_init();		  //LED初始化
 	adc_init();			  //ADC初始化
+//	adc_del();			  //ADC初始化
 	gptm0_onfiguration(); //定时器初始化
 	bftm_onfiguration();
 	rtc_init(); //RTC初始化
 	systick_init();
+	
+	//check_battery_level();
 	low_power_init(); //低功耗初始化
 	bt_send_mcu_ver();
 
@@ -106,13 +110,19 @@ int main(void)
 	calibration_operation = 0;
 	motor_current = 0;
 #endif
-
+	
 	low_power_event_flag = 0;
 	while (1)
 	{
+		// float tmp_voltage = 0;
+		// float real_volt = 0;
+		// tmp_voltage = (HT_ADC->DR[1] & 0x0FFF);
+		// real_volt = ((float)tmp_voltage/4096)*3300;
+		// printf("%3.4f\n",real_volt);
 
 		motor_current_test(); //电机电流
 		motor_turn();		  //正反转
+		
 		calibration_test();	  //校验
 
 		bt_uart_service(); 	 //涂鸦协议处理
@@ -123,6 +133,7 @@ int main(void)
 			motor_stop();
 			low_power_event_flag = 1;
 			tybn1_join_sleep_mode();
+			//GPIO_WriteOutBits(HT_GPIOC, GPIO_PIN_0,RESET);
 
 			EXTI_ClearWakeupFlag(EXTI_CHANNEL_1);
 			EXTI_ClearWakeupFlag(EXTI_CHANNEL_2);
@@ -131,22 +142,28 @@ int main(void)
 			EXTI_ClearWakeupFlag(EXTI_CHANNEL_15);
 			EXTI_WakeupEventIntConfig(ENABLE);
 
-			ADC_Cmd(HT_ADC, DISABLE);
+			// ADC_IntConfig(HT_ADC, ADC_INT_SINGLE_EOC, DISABLE);//启用或禁用ADC中断
+			ADC_Cmd(HT_ADC, DISABLE);//启用或禁用指定的ADC。
+			// ADC_SoftwareStartConvCmd(HT_ADC, DISABLE);//启用或禁用选定的ADC软件启动常规通道转换。
+					
 			//SET_LED(RESET);
 			printf("enter slepp!\n");
 			PWRCU_DeepSleep1(PWRCU_SLEEP_ENTRY_WFI);
 
 			printf("REBOOT slepp!\n");
+			//ADC_Cmd(HT_ADC, ENABLE);//启用或禁用指定的ADC。
 			adc_init();
 			//bt_send_mcu_ver();
+			//ms_delay_systick(300);
 		}
 		//过流保护
 		//if(motor_current>0x190)		//400mA
 		if (motor_current > protect_current)
 		{
-			printf("%d",motor_current);
+			printf("%d",motor_current);    
+			printf("exit!");
 			motor_current = 0;
-			motor_stop();
+			//motor_stop();
 		}
 	}
 }

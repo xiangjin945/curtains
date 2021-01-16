@@ -146,7 +146,8 @@ void COM0_IRQHandler(void)
 	if (USART_GetFlagStatus(HT_UART0, USART_FLAG_RXDR))
 	{
 		uart_receive_input(HT_UART0->DR);
-		
+		USART_SendData(HT_USART0,HT_UART0->DR);
+		while(USART_GetFlagStatus(HT_USART0, USART_FLAG_TXC) == RESET){;}
 		USART_ClearFlag(HT_UART0, USART_FLAG_RXDR);
 	}
 }
@@ -420,18 +421,15 @@ void EVWUP_IRQHandler(void)
 	bftm_minute = 0;*/
 	// NOTE: 2020.12.2 捕获唤醒中断时，a.重置低功耗时间标记		b.重置低功耗状态标记		
 	gptm0_4low = 0;
-	
 	if(low_power_event_flag == 1)
 	{
+		printf("huanxiang\n");
 		low_power_event_flag = 0;
-		USART_SendData(HT_USART0, 0xF9);
-		while(USART_GetFlagStatus(HT_USART0, USART_FLAG_TXC) == RESET);
-		USART_SendData(HT_USART0, 0xF9);
-		while(USART_GetFlagStatus(HT_USART0, USART_FLAG_TXC) == RESET);
-		USART_SendData(HT_USART0,low_power_event_flag);
-		while(USART_GetFlagStatus(HT_USART0, USART_FLAG_TXC) == RESET);
+		
 		tybn1_out_sleep_mode();
+		//GPIO_WriteOutBits(HT_GPIOC, GPIO_PIN_0,SET);
 	}
+
 	
 	/* Disable Wakeup Event Interrupt to avoid entering ISR again                                             */
 	EXTI_WakeupEventIntConfig(DISABLE);		// ENABLE DISABLE
@@ -444,6 +442,8 @@ void EVWUP_IRQHandler(void)
 	EXTI_ClearWakeupFlag(EXTI_CHANNEL_14); // Note: The clear operation may not work since the IO still active
 	// 2020.12.1 模块PA15会有持续的脉冲信号，导致不停的唤醒MCU，暂时注解PA15中断注册
 	EXTI_ClearWakeupFlag(EXTI_CHANNEL_15); // Note: The clear operation may not work since the IO still active
+
+	
 }
 
 

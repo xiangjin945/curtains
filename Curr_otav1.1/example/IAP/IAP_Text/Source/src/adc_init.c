@@ -2,6 +2,7 @@
 
 u16 battery_voltage[100] = {0};
 u16 tmp_voltage[100] = {0};
+
 //vu32 gPotentiometerLevel;
 //u8 gADC_Result[3] = {0};
 //u8 gADC_CycleEndOfConversion;
@@ -52,6 +53,30 @@ u16 get_battery_voltage(void)
 }
 
 
+u16 check_battery_level(void)
+{
+	float tmp_silent = 0;
+	float real_silent = 0;
+	tmp_silent = (HT_ADC->DR[0] & 0x0FFF); 
+	real_silent = ((float)tmp_silent/4096)*3.3; //* 200;
+	printf("%.4f\n",real_silent);
+
+	if(real_silent > MEDIUM_BATTERY)
+	{
+		printf("full\n");
+		update_battery_value(2);
+	}
+	if(real_silent > LOW_BATTERY && real_silent < MEDIUM_BATTERY)
+	{
+		printf("Moderate\n");
+		update_battery_value(1);
+	}
+	if(real_silent < LOW_BATTERY)
+	{
+		printf("low power\n");
+		update_battery_value(0);
+	}
+}
 //adc_val/4096*Vref=Value			// NOTE: 12.9 比较堵转电流阈值的检测电流采样算法
 u16 check_motor_current(u16 protect_current)
 {
@@ -59,17 +84,19 @@ u16 check_motor_current(u16 protect_current)
 	int t=0;
 	int k=0;
 	float real_volt = 0;
+
 	u16 average_volt = 0;
 	
 	//ms_delay_systick(3);
 	for(i=0;i<10;i++)
 	{
 		
-		tmp_voltage[i] = (HT_ADC->DR[0] & 0x0FFF);
-		// NOTE: 每次采样值均转化为电流值
-		real_volt = ((float)tmp_voltage[i]/4095)*3.3;//这里的类型
-		real_volt = real_volt*1000;
 		
+		tmp_voltage[i] = (HT_ADC->DR[1] & 0x0FFF);
+		real_volt = ((float)tmp_voltage[i]/4096)*3300;
+
+		// NOTE: 每次采样值均转化为电流值
+		printf("%3.4f\n",real_volt);
 		if(real_volt >= protect_current) //获取到real_volt的值为 1E 2E 2D 值都比 64小 
 		{
 			USART_SendData(HT_USART0,0xab);
@@ -145,20 +172,32 @@ u16 get_motor_current(void)
 
 void adc_init(void)
 {
+	// RSTCU_PeripReset_TypeDef rst;
+	// rst.Bit.ADC0 = 1;
+	// RSTCU_PeripReset(rst,ENABLE);
+	// rst.Bit.ADC1 = 1;
+	// RSTCU_PeripReset(rst,ENABLE);
+	ADC_DeInit(HT_ADC);
 	/* Config AFIO mode as ADC function                                                                       */
 	//AFIO_GPxConfig(GPIO_PA, AFIO_PIN_4, AFIO_FUN_ADC);
 	//配置指定引脚的GPIO模式
-	AFIO_GPxConfig(GPIO_PA, AFIO_PIN_5, AFIO_FUN_ADC);
 
+	AFIO_GPxConfig(GPIO_PA, AFIO_PIN_4, AFIO_FUN_ADC);
+	AFIO_GPxConfig(GPIO_PA, AFIO_PIN_5, AFIO_FUN_ADC);
+	
+	
 	/* Continuous Mode, Length 1, SubLength 1                
 	配置常规组的转换模式(连续和单次)和列表队列的长度。                                                 */
-	ADC_RegularGroupConfig(HT_ADC, CONTINUOUS_MODE, 1, 1);
+	ADC_RegularGroupConfig(HT_ADC, CONTINUOUS_MODE, 2, 1);
 
 	/* ADC Channel n, Rank 0, Sampling clock is (1.5 + 0) ADCLK
 	Conversion time = (sampling clock + 12.5) / ADCLK = 12.4 uS */
-	//ADC_RegularChannelConfig(HT_ADC, ADC_CH_6, 0);
+	
 	//在定序器中为常规频道配置相应的等级
-	ADC_RegularChannelConfig(HT_ADC, ADC_CH_7, 0);
+	//ADC_RegularChannelConfig(HT_ADC, ADC_CH_6, 0);
+	ADC_RegularChannelConfig(HT_ADC, ADC_CH_6, 0);
+	ADC_RegularChannelConfig(HT_ADC, ADC_CH_7, 1);
+	
 
 	/* Use Software Trigger as ADC trigger source 
 	配置ADC触发源以进行常规通道转换。                                                            */

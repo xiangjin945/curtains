@@ -20,19 +20,17 @@ void update_battery_value(u32 current_data)
     dp_data_buf[2] = VERSION;
     dp_data_buf[3] = 0x07;
     dp_data_buf[4] = 0x00;	//数据长度
-    dp_data_buf[5] = 0x08;	//数据长度
-	dp_data_buf[6] = 0x0D;
-	dp_data_buf[7] = 0x02;
+    dp_data_buf[5] = 0x05;	//数据长度
+	dp_data_buf[6] = 0x6E;
+	dp_data_buf[7] = 0x04;
 	dp_data_buf[8] = 0x00;
-	dp_data_buf[9] = 0x04;
-	dp_data_buf[10] = (current_data>>24);  //电流
-	dp_data_buf[11] = (current_data>>16);  //电流
-	dp_data_buf[12] = (current_data>>8);  //电流
-	dp_data_buf[13] = (current_data&0xFF);  //电流
-	crc8 = get_check_sum(dp_data_buf,14);
-	dp_data_buf[14] = crc8;
-	uart0_send(dp_data_buf,15);
-	//usart0_send(dp_data_buf,15);
+	dp_data_buf[9] = 0x01;
+	dp_data_buf[10] = 0x01;  //电流
+
+	crc8 = get_check_sum(dp_data_buf,11);
+	dp_data_buf[11] = crc8;
+	uart0_send(dp_data_buf,12);
+	usart0_send(dp_data_buf,12);
 }
 
 void update_protect_current(u32 current_data)
@@ -124,6 +122,7 @@ void motor_current_test(void)
     {
         gptm0_cnt = 0;
         gptm0_second = 0;  
+        printf("huanxing INPUT\n");
 		motor_current = check_motor_current(protect_current);
         
         // USART_SendData(HT_USART0,0xdd);
@@ -134,7 +133,7 @@ void motor_current_test(void)
         // USART_SendData(HT_USART0,0xdd);
 		
 		//update_protect_current(protect_current);  
-		update_battery_value(33);		// 上报目前为百分比，设模拟值(33%) 33
+		update_battery_value(1);		// 上报目前为百分比，设模拟值(33%) 33
     }
 }
 
@@ -243,6 +242,7 @@ void motor_turn(void)
         /*1月6 把正反转调转过来*/
         //close_curtain();	//正转
         open_curtain();
+        check_battery_level();
     }
     
     if(!RIGHT_KEY())

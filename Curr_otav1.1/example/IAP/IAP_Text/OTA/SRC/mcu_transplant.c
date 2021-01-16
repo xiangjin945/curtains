@@ -1,3 +1,9 @@
+/*
+ * @Author: i4season.xiang
+ * @Date: 2021-01-09 15:55:28
+ * @LastEditTime: 2021-01-14 19:02:41
+ * @FilePath: \Src_APc:\Users\24379\Desktop\Git_Svn\Curr_otav1.1\example\IAP\IAP_Text\OTA\SRC\mcu_transplant.c
+ */
 #include "ht32.h"
 #include "ht32_board.h"
 #include "ht32_board_configs.h"
@@ -33,7 +39,7 @@ int uart_transmit_output_fun(unsigned char value)
 
 void all_data_update_fun(void)
 {
-//	mcu_dp_enum_update(DPID_CONTROL,当前设备控制); //枚举型数据上报;
+//	  mcu_dp_enum_update(DPID_CONTROL,当前设备控制); //枚举型数据上报;
 //    mcu_dp_value_update(DPID_PERCENT_CONTROL,当前开启百分比控制); //VALUE型数据上报;
 //    mcu_dp_enum_update(DPID_MODE,当前工作模式); //枚举型数据上报;
 //    mcu_dp_enum_update(DPID_CONTROL_BACK,当前电机反向); //枚举型数据上报;
