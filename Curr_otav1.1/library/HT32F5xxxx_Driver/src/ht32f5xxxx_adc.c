@@ -62,7 +62,7 @@
   * @{
   */
 /*********************************************************************************************************//**
- * @brief Deinitialize the HT_ADCn peripheral registers to their default reset values.
+ * @brief Deinitialize the HT_ADCn peripheral registers to their default reset values.将HT_ADCn外设寄存器初始化为它们的默认复位值。
  * @param HT_ADCn: where HT_ADCn is the selected ADC from the ADC peripherals.
  * @retval None
  ************************************************************************************************************/

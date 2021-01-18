@@ -21,8 +21,10 @@
 #include "adc_init.h"
 #include "tst_function.h"
 #include "service_logic_manage.h"
+#include "mcu_api.h"
 
 extern u16 motor_current;
+extern u8 ty_control;
 
 void update_motor_current(u32 current_data);
 void update_protect_current(u32 current_data);
@@ -35,5 +37,8 @@ void calibration_test(void);
 void tybn1_test(void);
 void set_motor_current_78(u8 *data_buf);
 void global_arg_fun(void);
+extern void update_battery_value(u32 current_data);
+void arg_erase_write(void);
+void mute_erase_write(void);
 
 #endif /* __TEST_FUNCTION_H */

@@ -1,7 +1,7 @@
 /*
  * @Author: i4season.xiang
  * @Date: 2021-01-09 15:55:28
- * @LastEditTime: 2021-01-15 17:07:41
+ * @LastEditTime: 2021-01-18 16:36:06
  * @FilePath: \Src_APc:\Users\24379\Desktop\Git_Svn\Curr_otav1.1\example\IAP\IAP_Text\Source\inc\adc_init.h
  */
 /* Define to prevent recursive inclusion -------------------------------------------------------------------*/
@@ -14,6 +14,7 @@
 #include "ht32_board.h"
 #include "ht32f5xxxx_ckcu.h"
 #include "systick_init.h"
+#include "tst_function.h"
 
 #define LOW_BATTERY     1.14
 #define MEDIUM_BATTERY  1.47

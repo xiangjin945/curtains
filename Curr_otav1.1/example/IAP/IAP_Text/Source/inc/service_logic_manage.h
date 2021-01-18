@@ -44,7 +44,10 @@
 typedef struct Global_variable{
 	volatile u32 full_running_time;
 	volatile u8 global_percent; //当前百分比，默认为100%
+	volatile u8 auto_run_mode;
+	volatile u8 mute_mode;
 }global_variable;
+
 
 //保护电流阈值
 extern volatile u16 protect_current;

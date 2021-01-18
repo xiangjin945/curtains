@@ -85,7 +85,7 @@ int main(void)
 	low_power_init(); //低功耗初始化
 	bt_send_mcu_ver();
 
-	global_arg_fun();
+	global_arg_fun();//全局参数
 #if 1
 	mcu_state = 1; //第一次上电
 	curtain_mode = 0;
@@ -93,7 +93,7 @@ int main(void)
 	calibration_operation = 0;
 	motor_current = 0;
 #endif
-	
+	check_battery_level();//首次启动时上报电池电量
 	low_power_event_flag = 0;
 	while (1)
 	{
@@ -108,7 +108,7 @@ int main(void)
 			motor_stop();
 			low_power_event_flag = 1;
 			tybn1_join_sleep_mode();
-			//GPIO_WriteOutBits(HT_GPIOC, GPIO_PIN_0,RESET);
+			GPIO_WriteOutBits(HT_GPIOC, GPIO_PIN_0,RESET);
 
 			EXTI_ClearWakeupFlag(EXTI_CHANNEL_1);
 			EXTI_ClearWakeupFlag(EXTI_CHANNEL_2);
@@ -132,7 +132,7 @@ int main(void)
 			printf("%d",motor_current);    
 			printf("exit!");
 			motor_current = 0;
-			//motor_stop();
+			motor_stop();
 		}
 	}
 }

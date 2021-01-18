@@ -1,3 +1,9 @@
+/*
+ * @Author: i4season.xiang
+ * @Date: 2021-01-09 15:55:28
+ * @LastEditTime: 2021-01-18 18:20:35
+ * @FilePath: \Src_APc:\Users\24379\Desktop\Git_Svn\Curr_otav1.1\example\IAP\IAP_Text\Source\inc\motor_init.h
+ */
 /* Define to prevent recursive inclusion -------------------------------------------------------------------*/
 #ifndef __MOTOR_INIT_H
 #define __MOTOR_INIT_H
@@ -11,6 +17,7 @@
 #include "ht32f52231_41_libcfg.h"
 #include "ht32f5xxxx_ckcu.h"
 #include "ht32f52241_sk.h"
+#include "service_logic_manage.h"
 
 #define PWR_ON			1
 #define PWR_OFF			0

@@ -2,6 +2,8 @@
 
 vu32 speed = 0x64;
 
+
+
 #ifdef USE_GPIO_PB2_PB3
 void motor_init(void)
 {

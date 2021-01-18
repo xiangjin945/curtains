@@ -102,6 +102,7 @@ const DOWNLOAD_CMD_S download_cmd[] =
         {DPID_BATTERY_REMAIN, DP_TYPE_VALUE},
         {DPID_AUTO_ON_OFF, DP_TYPE_BOOL},
         {DPID_SILENT_MODE, DP_TYPE_BOOL},
+        {DPID_VALUE_SET, DP_TYPE_VALUE},
 
 };
 
@@ -179,25 +180,25 @@ void all_data_update(void)
 static unsigned char dp_download_control_handle(const unsigned char value[], unsigned short length)
 {
     //示例:当前DP类型为ENUM
-    unsigned char ret;
-    unsigned char control;
-
-    //    control = mcu_get_dp_download_enum(value,length);
-    //	printf("%d",control);
+    check_battery_level();//1.18: 每次涂鸦app控制时上报一次电池电量。
+   
     switch (value[0])
     {
     case 0:
+        ty_control = 1;
         mcu_dp_enum_update(DPID_CONTROL, value[0]);
         open_curtain();
         break;
 
     case 1:
+        ty_control = 0;
         mcu_dp_enum_update(DPID_CONTROL, value[0]);
         //motor_pwr(PWR_OFF);
         motor_stop();
         break;
 
     case 2:
+        ty_control = 1;
         mcu_dp_enum_update(DPID_CONTROL, value[0]);
         close_curtain();
 
@@ -206,6 +207,7 @@ static unsigned char dp_download_control_handle(const unsigned char value[], uns
     default:
         break;
     }
+    
 
 
 }
@@ -457,7 +459,7 @@ static unsigned char dp_download_curtain_speed_handle(const unsigned char value[
     ret = mcu_dp_value_update(DPID_BATTERY_REMAIN, string_data);
     if (ret == SUCCESS)
     {
-        speed = string_data;
+       // speed = string_data;
         return SUCCESS;
     }
 
@@ -495,13 +497,21 @@ static unsigned char dp_curtain_auto_mode(const unsigned char value[], unsigned 
     unsigned char string_data = 0;
 
     string_data = value[0];
+    if(string_data == 1)
+    {
+        variable.auto_run_mode = 1;
+        arg_erase_write();
+    }else{
+        variable.auto_run_mode = 0;
+        arg_erase_write();
+
+    }
     //处理完DP数据后应有反馈
     ret = mcu_dp_bool_update(DPID_AUTO_ON_OFF, string_data);
     if (ret == SUCCESS)
     {
         return SUCCESS;
     }
-
     else
         return ERROR;
 }
@@ -513,9 +523,17 @@ static unsigned char dp_curtain_silent_mode(const unsigned char value[], unsigne
     unsigned char ret;
     unsigned char string_data = 0;
 
-    string_data = value[0];
+    variable.mute_mode = value[0];
+    if(variable.mute_mode == 1)
+    {
+        speed = 0x50;
+        mute_erase_write();
+    }else{
+        speed = 0x64;
+        mute_erase_write();
+    }
     //处理完DP数据后应有反馈
-    ret = mcu_dp_bool_update(DPID_SILENT_MODE, string_data);
+    ret = mcu_dp_bool_update(DPID_SILENT_MODE, variable.mute_mode);
     if (ret == SUCCESS)
     {
         return SUCCESS;
@@ -641,10 +659,6 @@ unsigned char dp_download_handle(unsigned char dpid, const unsigned char value[]
         //最佳位置处理函数
         ret = dp_download_position_best_handle(value, length);
         break;
-    // case DPID_LED_SETTING:
-    //     //指示灯设置处理函数
-    //     ret = dp_download_led_setting_handle(value, length);
-    //     break;
     case DPID_BATTERY_REMAIN:
         /*速度设定*/
         ret = dp_download_curtain_speed_handle(value, length);

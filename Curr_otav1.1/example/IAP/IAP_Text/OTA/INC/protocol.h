@@ -160,14 +160,14 @@ DPID_CALIBRATION_OPERATION      校准操作
 */
 #define DPID_CURTAIN_MODE 0x67
 #define DPID_CALIBRATION_STATUS 0x68
-#define DPID_CALIBRATION_OPERATION 0x6D
+#define DPID_CALIBRATION_OPERATION 0x6D 
 
 /*电池余量*/
 #define DPID_BATTERY_REMAIN 0x6C
 /*电流阈值设定*/
 #define DPID_VALUE_SET 0x78
 
-volatile extern unsigned char global_percent;//当前百分比，默认为100%
+//volatile extern unsigned char global_percent;//当前百分比，默认为100%
 
 /*****************************************************************************
 函数名称 : all_data_update

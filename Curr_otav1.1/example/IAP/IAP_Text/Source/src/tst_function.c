@@ -5,7 +5,7 @@ volatile u8 rtc_motor_state = 0;
 volatile u8 key_flag = 0;			//key_flag=1--左键, key_flag=2--右键
 volatile u8 motor_status = 0;		//motor_status=1--工作方向, motor_status=2--换向
 u16 motor_current = 0;
-
+u8 ty_control = 0;
 void delay(int i)
 {
 	for(;i>0;i--){;;;}
@@ -122,18 +122,10 @@ void motor_current_test(void)
     {
         gptm0_cnt = 0;
         gptm0_second = 0;  
-        printf("huanxing INPUT\n");
 		motor_current = check_motor_current(protect_current);
         
-        // USART_SendData(HT_USART0,0xdd);
-        // USART_SendData(HT_USART0,(motor_current>>8));
-        // while(USART_GetFlagStatus(HT_USART0, USART_FLAG_TXC) == RESET){;}
-        // USART_SendData(HT_USART0,(u8)motor_current);
-        // while(USART_GetFlagStatus(HT_USART0, USART_FLAG_TXC) == RESET){;}
-        // USART_SendData(HT_USART0,0xdd);
-		
 		//update_protect_current(protect_current);  
-		update_battery_value(1);		// 上报目前为百分比，设模拟值(33%) 33
+		//update_battery_value(1);		// 上报目前为百分比，设模拟值(33%) 33
     }
 }
 
@@ -206,64 +198,57 @@ void rtc_test(void)
     }
 #endif
 }
+
 //u32 crc32=0;
 //电机正反转测试
 void motor_turn(void)
 {
-    if(!SET_KEY())
-    {
-        SET_LED(RESET);
-        motor_stop();
-        key_flag = 0;
-        motor_pwr(PWR_OFF);
-    }
-    else
-    {
-        SET_LED(SET);
-    }
-    
-    if(!LEFT_KEY())
-    {
-        SET_LED(RESET);
-        key_flag = 1;
-    }
-    if(key_flag==1) // TouchGo左键触发: 窗帘设备右移 - 电机正转
-    {
-        tybn1_out_sleep_mode();
-		gptm0_4low = 0;
-        key_flag = 0;
-        motor_pwr(PWR_ON);
-        motor_stop();
-        delay(100);
+    if(variable.auto_run_mode == 1){
+
+            if(!SET_KEY() && ty_control == 0)//停止
+            {
+                SET_LED(RESET);
+                motor_stop();
+                key_flag = 0;
+                motor_pwr(PWR_OFF);
+            }
+            else
+            {
+                SET_LED(SET);
+            }
+            
+            if(!LEFT_KEY())
+            {
+                SET_LED(RESET);
+                key_flag = 1;
+            }
+            if(key_flag==1&& ty_control == 0) // TouchGo左键触发: 窗帘设备右移 - 电机正转
+            {
+                // tybn1_out_sleep_mode();
+                gptm0_4low = 0;
+                key_flag = 0;
+                motor_pwr(PWR_ON);
+                motor_stop();
+                delay(100);
+                open_curtain();
+            }
+            
+            if(!RIGHT_KEY())
+            {
+                SET_LED(RESET);
+                key_flag = 2;
+            }
+            if(key_flag==2 && ty_control == 0) // TouchGo右键触发: 窗帘设备左移 - 电机反转
+            {
+                // tybn1_out_sleep_mode();
+                gptm0_4low = 0;
+                key_flag = 0;
+                motor_pwr(PWR_ON);
+                motor_stop();
+                delay(100);
+                close_curtain();
+            }
         
-        //if(curtain_mode==0)
-        //    open_curtain();		//反转
-        //else
-        /*1月6 把正反转调转过来*/
-        //close_curtain();	//正转
-        open_curtain();
-        check_battery_level();
-    }
-    
-    if(!RIGHT_KEY())
-    {
-        SET_LED(RESET);
-        key_flag = 2;
-    }
-    if(key_flag==2) // TouchGo右键触发: 窗帘设备左移 - 电机反转
-    {
-        tybn1_out_sleep_mode();
-		gptm0_4low = 0;
-        key_flag = 0;
-        motor_pwr(PWR_ON);
-        motor_stop();
-        delay(100);
-        //if(curtain_mode==0)
-        //    close_curtain();	//正转
-        //else
-        /*1月6 把正反转调转过来*/
-        //open_curtain();		//反转
-        close_curtain();
     }
 }    
 
@@ -614,12 +599,15 @@ void tybn1_test(void)
         //gptm0_second = 0;
     }
 }
-
+//全局参数
 void global_arg_fun(void)
 {
     variable.full_running_time = rw(FLASH_55K_GLOBAL_DATA);
 	variable.global_percent = rw(FLASH_55K_GLOBAL_DATA + 4);
-	if (variable.full_running_time == 0xFFFFFFFF)//在首次启动运行时会进入一次给全局变量赋初值，后续是从flash读取值这个if不在进入。
+    variable.auto_run_mode = rw(FLASH_55K_GLOBAL_DATA + 8);
+    variable.mute_mode = rw(FLASH_55K_GLOBAL_DATA + 12);
+
+	if (variable.full_running_time == 0xFFFFFFFF)//在首次启动运行时会进入一次给全局变量赋初值，后续是从flash读取值这个if不再进入。
 	{
 		u32 i;
 		for (i = FLASH_55K_GLOBAL_DATA; i < FLASH_55K_GLOBAL_DATA + 1024; i += 1024)
@@ -628,8 +616,50 @@ void global_arg_fun(void)
 		}		
 		variable.global_percent = 100;
 		variable.full_running_time = 0;
+        variable.auto_run_mode = 0;
+        variable.mute_mode = 0;
 		FLASH_ProgramWordData(FLASH_55K_GLOBAL_DATA, variable.full_running_time);
     	FLASH_ProgramWordData(FLASH_55K_GLOBAL_DATA+4, variable.global_percent);
+        FLASH_ProgramWordData(FLASH_55K_GLOBAL_DATA+8, variable.auto_run_mode);
+        FLASH_ProgramWordData(FLASH_55K_GLOBAL_DATA+12, variable.auto_run_mode);
+
+        update_protect_current(protect_current);
 	
 	}
+    if(variable.mute_mode == 1)
+    {
+        speed = 0x50;
+    }else{
+        speed = 0x64;
+    }
+    //update_protect_current(protect_current);
+}
+//自动模式写入flash时调用
+void arg_erase_write(void)
+{
+    variable.full_running_time = rw(FLASH_55K_GLOBAL_DATA);
+	variable.global_percent = rw(FLASH_55K_GLOBAL_DATA + 4);
+   // variable.auto_run_mode = rw(FLASH_55K_GLOBAL_DATA + 8);
+    u32 i;
+    for(i = FLASH_55K_GLOBAL_DATA;i<FLASH_55K_GLOBAL_DATA+1024 ;i+=1024){
+        FLASH_ErasePage(i);
+    }
+    FLASH_ProgramWordData(FLASH_55K_GLOBAL_DATA, variable.full_running_time);
+    FLASH_ProgramWordData(FLASH_55K_GLOBAL_DATA+4, variable.global_percent);
+    FLASH_ProgramWordData(FLASH_55K_GLOBAL_DATA+8, variable.auto_run_mode);
+}
+//静音模式写flash调用
+void mute_erase_write(void)
+{
+    variable.full_running_time = rw(FLASH_55K_GLOBAL_DATA);
+	variable.global_percent = rw(FLASH_55K_GLOBAL_DATA + 4);
+    variable.auto_run_mode = rw(FLASH_55K_GLOBAL_DATA + 8);
+    u32 i;
+    for(i = FLASH_55K_GLOBAL_DATA;i<FLASH_55K_GLOBAL_DATA+1024 ;i+=1024){
+        FLASH_ErasePage(i);
+    }
+    FLASH_ProgramWordData(FLASH_55K_GLOBAL_DATA, variable.full_running_time);
+    FLASH_ProgramWordData(FLASH_55K_GLOBAL_DATA+4, variable.global_percent);
+    FLASH_ProgramWordData(FLASH_55K_GLOBAL_DATA+8, variable.auto_run_mode);
+    FLASH_ProgramWordData(FLASH_55K_GLOBAL_DATA+12, variable.mute_mode);
 }

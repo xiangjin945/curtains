@@ -2,6 +2,7 @@
 
 global_variable variable;
 
+
 u8 monday = 0;
 u8 tuesday = 0;
 u8 wednesday = 0;
@@ -10,7 +11,7 @@ u8 friday = 0;
 u8 saturday = 0;
 u8 sunday = 0;
 u8 count_down_action = 0;
-volatile u16 protect_current = 0x140;
+volatile u16 protect_current = 0xFA;
 
 //´°Á±Ä£Ê½
 volatile u8 curtain_mode = 0;	//0=×ó´°Á±, 1=ÓÒ´°Á±

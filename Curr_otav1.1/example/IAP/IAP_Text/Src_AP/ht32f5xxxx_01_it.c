@@ -146,8 +146,8 @@ void COM0_IRQHandler(void)
 	if (USART_GetFlagStatus(HT_UART0, USART_FLAG_RXDR))
 	{
 		uart_receive_input(HT_UART0->DR);
-		USART_SendData(HT_USART0,HT_UART0->DR);
-		while(USART_GetFlagStatus(HT_USART0, USART_FLAG_TXC) == RESET){;}
+		// USART_SendData(HT_USART0,HT_UART0->DR);
+		// while(USART_GetFlagStatus(HT_USART0, USART_FLAG_TXC) == RESET){;}
 		USART_ClearFlag(HT_UART0, USART_FLAG_RXDR);
 	}
 }
@@ -425,9 +425,10 @@ void EVWUP_IRQHandler(void)
 	{
 		printf("huanxiang\n");
 		low_power_event_flag = 0;
+		motor_turn();	
 		
 		tybn1_out_sleep_mode();
-		//GPIO_WriteOutBits(HT_GPIOC, GPIO_PIN_0,SET);
+		GPIO_WriteOutBits(HT_GPIOC, GPIO_PIN_0,SET);
 	}
 
 	
