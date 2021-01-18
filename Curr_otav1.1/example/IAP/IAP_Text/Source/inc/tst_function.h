@@ -34,5 +34,6 @@ void motor_10_test(void);
 void calibration_test(void);
 void tybn1_test(void);
 void set_motor_current_78(u8 *data_buf);
+void global_arg_fun(void);
 
 #endif /* __TEST_FUNCTION_H */

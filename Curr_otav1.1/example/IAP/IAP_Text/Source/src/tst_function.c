@@ -614,3 +614,22 @@ void tybn1_test(void)
         //gptm0_second = 0;
     }
 }
+
+void global_arg_fun(void)
+{
+    variable.full_running_time = rw(FLASH_55K_GLOBAL_DATA);
+	variable.global_percent = rw(FLASH_55K_GLOBAL_DATA + 4);
+	if (variable.full_running_time == 0xFFFFFFFF)//在首次启动运行时会进入一次给全局变量赋初值，后续是从flash读取值这个if不在进入。
+	{
+		u32 i;
+		for (i = FLASH_55K_GLOBAL_DATA; i < FLASH_55K_GLOBAL_DATA + 1024; i += 1024)
+		{
+			FLASH_ErasePage(i);
+		}		
+		variable.global_percent = 100;
+		variable.full_running_time = 0;
+		FLASH_ProgramWordData(FLASH_55K_GLOBAL_DATA, variable.full_running_time);
+    	FLASH_ProgramWordData(FLASH_55K_GLOBAL_DATA+4, variable.global_percent);
+	
+	}
+}
